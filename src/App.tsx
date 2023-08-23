@@ -3,7 +3,25 @@ import "./App.css";
 import { createYearMatrix } from "../../grafik-src/utils";
 import { shapeYearMatrix } from "../../grafik-src/utils";
 import { TDay } from "../../grafik-src/types";
-import { useState } from "react";
+
+function smartMonths(monthIdntifier: number) {
+    let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+
+    return months[monthIdntifier - 1];
+}
 
 function SettingsBar() {
     return (
@@ -36,7 +54,7 @@ function WeekDisplay(props: any) {
     return (
         <>
             <div className="week">
-                {props.props.map((w) => {
+                {props.props.map((w: TDay) => {
                     if (w == undefined) {
                         return <span></span>;
                     } else {
@@ -49,10 +67,12 @@ function WeekDisplay(props: any) {
 }
 
 function MonthDisplay(props) {
-    // console.log(props.props)
+    console.log(props.props[1][0].monthId);
     return (
         <>
             <div>
+                <h1>{smartMonths(props.props[1][0].monthId)}</h1>
+                <DayLabelBar></DayLabelBar>
                 {props.props.map((week) => (
                     <WeekDisplay props={week}></WeekDisplay>
                 ))}
@@ -64,14 +84,12 @@ function App() {
     // console.log(createYearMatrix(2023))
     let data = createYearMatrix(2023);
     let matrix = shapeYearMatrix(data, 2023);
-    console.log(matrix);
     return (
         <>
             <SettingsBar></SettingsBar>
             <div className="calWin">
                 {matrix.map((a0) => (
                     <div className="msc">
-                        <DayLabelBar></DayLabelBar>
                         <MonthDisplay props={a0}></MonthDisplay>
                     </div>
                 ))}
