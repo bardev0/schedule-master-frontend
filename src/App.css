@@ -1,0 +1,24 @@
+.settings {
+    background-color: bisque;
+}
+
+.calWin {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-items: center;
+    gap: 20px;
+}
+
+.msc {
+    background-color: lightblue;
+    padding: 20px;
+    color: black;
+}
+
+.week {
+    background-color: chocolate;
+    margin-top: 2px;
+    display: grid;
+    grid-template-columns: repeat(7, 30px);
+}
