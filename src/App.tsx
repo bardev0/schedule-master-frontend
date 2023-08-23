@@ -31,23 +31,17 @@ function DayLabelBar() {
     );
 }
 
-function WeekDisplay(props) {
-    let [firstWeek, setFirstWeek] = useState(true);
+function WeekDisplay(props: any) {
     // console.log(props.props);
     return (
         <>
             <div className="week">
-                {props.props.map((week) => {
-                    if (firstWeek) {
-                        if (week == undefined) {
-                            return <span></span>;
-                        } else {
-                            return <span>{`${week.dayNum}`}</span>;
-														setFirstWeek(false)
-
-                        }
+                {props.props.map((w) => {
+                    if (w == undefined) {
+                        return <span></span>;
+                    } else {
+                        return <p>{w.dayNum}</p>;
                     }
-                    console.log(week);
                 })}
             </div>
         </>
@@ -59,8 +53,8 @@ function MonthDisplay(props) {
     return (
         <>
             <div>
-                {props.props.map((weeks) => (
-                    <WeekDisplay props={weeks}></WeekDisplay>
+                {props.props.map((week) => (
+                    <WeekDisplay props={week}></WeekDisplay>
                 ))}
             </div>
         </>
