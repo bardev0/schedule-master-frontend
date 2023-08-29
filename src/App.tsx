@@ -5,21 +5,30 @@ import { TDay } from "../../grafik-src/types";
 import { smartMonths } from "./logic";
 
 export function ViewSelector() {
+    const monthsUTC = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+    
+    const monthsNUM = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
     return (
         <>
-        <div>
-            <div>Select Month</div>
-            <select>
-                <option value={1}>January</option>
-            </select>
+            <div>
+                <div>Select Month</div>
+                <select>
+                    {
+                        monthsNUM.map( (idx, val) => <option value={val}>{monthsUTC[val]}</option>)
+                    }
+                </select>
 
-            <select>
-                <option value={2023}>2023</option>
-            </select>
-        </div>
+                <select>
+                    <option value={2023}>2023</option>
+                </select>
+            </div>
         </>
-    )    
-} 
+    );
+}
 
 function DayLabelBar() {
     return (
@@ -55,20 +64,19 @@ function WeekDisplay(props: any) {
 }
 
 function SingleMonthView(props: any) {
-
-		console.log(props)
+    console.log(props);
     return (
         <>
             <div>
-						{
-							props.props.map( (week: any) => <WeekDisplay props={week}></WeekDisplay> )
-						}
-						</div>
+                {props.props.map((week: any) => (
+                    <WeekDisplay props={week}></WeekDisplay>
+                ))}
+            </div>
         </>
     );
 }
 
-function MonthDisplay(props:any) {
+function MonthDisplay(props: any) {
     console.log(props.props[1][0].monthId);
     return (
         <>
@@ -90,8 +98,8 @@ function App() {
     let oneMonth = matrix[0];
     return (
         <>
-						<SettingsBar></SettingsBar>
-						<SingleMonthView props={oneMonth}></SingleMonthView>
+            <SettingsBar></SettingsBar>
+            <SingleMonthView props={oneMonth}></SingleMonthView>
             {/** `<SettingsBar></SettingsBar>`
             `<SingleMonthView month={oneMonth}></SingleMonthView>`
             {`<div className="calWin">
