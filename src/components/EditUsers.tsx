@@ -1,6 +1,8 @@
-//add employees, change hourly wage, add roles itp 
+//add employees, change hourly wage, add roles itp
 export function EditUsers() {
-    return (<>
-    <div>Edit Users Placeholder</div>
-    </>)    
+    return (
+        <>
+            <div>Edit Users Placeholder</div>
+        </>
+    );
 }

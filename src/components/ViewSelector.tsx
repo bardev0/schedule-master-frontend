@@ -20,11 +20,7 @@ export default function ViewSelector(props: any) {
         <>
             <div>
                 <div>Select Month</div>
-                <select
-                    onChange={(e) => 
-                        props.setM(e.target.value)
-                    }
-                >
+                <select onChange={(e) => props.setM(e.target.value)}>
                     {monthsNUM.map((_idx, val) => (
                         <option value={val}>{monthsUTC[val]}</option>
                     ))}

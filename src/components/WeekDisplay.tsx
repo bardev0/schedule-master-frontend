@@ -8,11 +8,13 @@ export function WeekDisplay(props: any) {
                     if (w == undefined) {
                         return <span></span>;
                     } else {
-                        return <div className="day">
-                        <p className="dayNum">{w.dayNum}</p>
-                        <p>Maniek</p>
-                        <p>Kuba</p>
-                        </div>;
+                        return (
+                            <div className="day">
+                                <p className="dayNum">{w.dayNum}</p>
+                                <p>Maniek</p>
+                                <p>Kuba</p>
+                            </div>
+                        );
                     }
                 })}
             </div>

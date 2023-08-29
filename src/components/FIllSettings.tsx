@@ -1,10 +1,7 @@
 export function FillSettings() {
     return (
         <>
-        <div>
-            Main Scheadule Actions Placeholder
-        </div>
+            <div>Main Scheadule Actions Placeholder</div>
         </>
-    )
-
+    );
 }

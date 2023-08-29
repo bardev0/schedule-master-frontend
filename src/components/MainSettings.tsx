@@ -2,7 +2,7 @@
 export function MainSettings() {
     return (
         <>
-        <div>Main Settings Placeholder</div>
+            <div>Main Settings Placeholder</div>
         </>
-    )    
+    );
 }
