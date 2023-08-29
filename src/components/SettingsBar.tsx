@@ -1,6 +1,6 @@
-import { ViewSelector } from "../App";
+import ViewSelector from "./ViewSelector";
+
 export default function SettingsBar(props: any) {
-    let props1 = props
     return (
         <>
             <div className="settings">
