@@ -3,23 +3,37 @@ import SettingsBar from "./components/SettingsBar";
 import { createYearMatrix, shapeYearMatrix } from "../../grafik-src/utils";
 import { TDay } from "../../grafik-src/types";
 import { smartMonths } from "./logic";
+import { useState } from "react";
 
-export function ViewSelector() {
-    const monthsUTC = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
+
+
+export function ViewSelector(props: any) {
     
+    const monthsUTC = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+
     const monthsNUM = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     return (
         <>
             <div>
                 <div>Select Month</div>
-                <select>
-                    {
-                        monthsNUM.map( (idx, val) => <option value={val}>{monthsUTC[val]}</option>)
-                    }
+                <select onChange={(e) => props.setM(e.target.value)}>
+                    {monthsNUM.map((_idx, val) => (
+                        <option value={val}>{monthsUTC[val]}</option>
+                    ))}
                 </select>
 
                 <select>
@@ -96,9 +110,19 @@ function App() {
     let matrix = shapeYearMatrix(data, 2023);
 
     let oneMonth = matrix[0];
+
+    // add function that grabs current month from Data and displays it as default
+    const [currentMonth, setCurrentMonth] = useState(0)
+
+    console.log(currentMonth)
     return (
         <>
-            <SettingsBar></SettingsBar>
+            <div>{currentMonth}</div>
+            <SettingsBar props={setCurrentMonth}></SettingsBar>
+
+            {
+// trzeba dodac zeby komponent nie bral calej array ale numer indexu z calej array
+            }
             <SingleMonthView props={oneMonth}></SingleMonthView>
             {/** `<SettingsBar></SettingsBar>`
             `<SingleMonthView month={oneMonth}></SingleMonthView>`
