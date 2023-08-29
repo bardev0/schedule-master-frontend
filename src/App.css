@@ -1,10 +1,33 @@
-/* .settings {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    background-color: bisque;
+:root {
+    --mscBgColor: lightblue;
+    --weekRowColor: rgb(139, 92, 5);
+    --bodyBgColor: chartreuse;
+    --settingsBgColor: rgb(224, 73, 73);
+    --dayBgColor:rosybrown; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bodyBgColor);
+    color: white;
+    overflow: hidden;
     width: 100vw;
-} */
+    display: flex;
+}
+
+
+.settings {
+    background-color: var(--settingsBgColor);
+    width: 100vw;
+    height: 100px;
+    display: flex;
+}
 
 /* .calWin {
     display: flex;
@@ -17,17 +40,29 @@
 .msc {
     display: grid;
     grid-template-columns: max-content();
-    grid-template-rows: repeat(7, 50px);
-    background-color: lightblue;
+    grid-template-rows: max-content();
+    background-color: var(--mscBgColor);
     width: 100vw;
     padding: 20px;
     color: black;
 }
 
-.week {
-    background-color: chocolate;
+.weekRow {
+    background-color: var(--weekRowColor);
     margin-top: 2px;
     display: grid;
-    grid-template-columns: repeat(7, 250px);
-    height: 100px;
+    grid-template-columns: repeat(7, calc(100vw / 7) );
+    height: calc((100vh - 100px) / 5);
+}
+
+.day {
+    background-color: var(--dayBgColor);
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.dayNum {
+ background-color: rgb(112, 71, 21);
+ margin-bottom: 7px;
+ margin-left: 7px;   
 }

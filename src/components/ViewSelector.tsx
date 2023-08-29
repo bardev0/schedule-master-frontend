@@ -1,5 +1,4 @@
 export default function ViewSelector(props: any) {
-    
     const monthsUTC = [
         "January",
         "February",
@@ -15,13 +14,17 @@ export default function ViewSelector(props: any) {
         "December",
     ];
 
-    const monthsNUM = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const monthsNUM = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     return (
         <>
             <div>
                 <div>Select Month</div>
-                <select onChange={(e) => props.setM(e.target.value)}>
+                <select
+                    onChange={(e) => 
+                        props.setM(e.target.value)
+                    }
+                >
                     {monthsNUM.map((_idx, val) => (
                         <option value={val}>{monthsUTC[val]}</option>
                     ))}

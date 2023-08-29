@@ -1,4 +1,4 @@
 export type TMonthsProps = {
-    array: Array<any>,
-    currentDisplay: number
-}
+    array: Array<any>;
+    currentDisplay: number;
+};
