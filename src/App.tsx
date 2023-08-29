@@ -77,12 +77,13 @@ function WeekDisplay(props: any) {
     );
 }
 
-function SingleMonthView(props: any) {
-    console.log(props);
+function SingleMonthView(props: TMonthsProps) {
+    console.log(props.array);
+    console.log(props.currentDisplay)
     return (
         <>
             <div>
-                {props.props.map((week: any) => (
+                {props.array[props.currentDisplay].map((week: any) => (
                     <WeekDisplay props={week}></WeekDisplay>
                 ))}
             </div>
@@ -91,7 +92,6 @@ function SingleMonthView(props: any) {
 }
 
 function MonthDisplay(props: any) {
-    console.log(props.props[1][0].monthId);
     return (
         <>
             <div>
@@ -104,6 +104,11 @@ function MonthDisplay(props: any) {
         </>
     );
 }
+
+type TMonthsProps = {
+    array: Array<any>,
+    currentDisplay: number
+}
 function App() {
     // console.log(createYearMatrix(2023))
     let data = createYearMatrix(2023);
@@ -112,7 +117,7 @@ function App() {
     let oneMonth = matrix[0];
 
     // add function that grabs current month from Data and displays it as default
-    const [currentMonth, setCurrentMonth] = useState(0)
+    const [currentMonth, setCurrentMonth] = useState(1)
 
     console.log(currentMonth)
     return (
@@ -123,7 +128,7 @@ function App() {
             {
 // trzeba dodac zeby komponent nie bral calej array ale numer indexu z calej array
             }
-            <SingleMonthView props={oneMonth}></SingleMonthView>
+            <SingleMonthView array={matrix} currentDisplay={currentMonth - 1}></SingleMonthView>
             {/** `<SettingsBar></SettingsBar>`
             `<SingleMonthView month={oneMonth}></SingleMonthView>`
             {`<div className="calWin">
