@@ -1,37 +1,25 @@
 import "./App.css";
-
-import { createYearMatrix } from "../../grafik-src/utils";
-import { shapeYearMatrix } from "../../grafik-src/utils";
+import SettingsBar from "./components/SettingsBar";
+import { createYearMatrix, shapeYearMatrix } from "../../grafik-src/utils";
 import { TDay } from "../../grafik-src/types";
+import { smartMonths } from "./logic";
 
-function smartMonths(monthIdntifier: number) {
-    let months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
-
-    return months[monthIdntifier - 1];
-}
-
-function SettingsBar() {
+export function ViewSelector() {
     return (
         <>
-            <div className="settings">
-                <h1>Hello World</h1>
-            </div>
+        <div>
+            <div>Select Month</div>
+            <select>
+                <option value={1}>January</option>
+            </select>
+
+            <select>
+                <option value={2023}>2023</option>
+            </select>
+        </div>
         </>
-    );
-}
+    )    
+} 
 
 function DayLabelBar() {
     return (
@@ -66,14 +54,28 @@ function WeekDisplay(props: any) {
     );
 }
 
-function MonthDisplay(props) {
+function SingleMonthView(props: any) {
+
+		console.log(props)
+    return (
+        <>
+            <div>
+						{
+							props.props.map( (week: any) => <WeekDisplay props={week}></WeekDisplay> )
+						}
+						</div>
+        </>
+    );
+}
+
+function MonthDisplay(props:any) {
     console.log(props.props[1][0].monthId);
     return (
         <>
             <div>
                 <h1>{smartMonths(props.props[1][0].monthId)}</h1>
                 <DayLabelBar></DayLabelBar>
-                {props.props.map((week) => (
+                {props.props.map((week: any) => (
                     <WeekDisplay props={week}></WeekDisplay>
                 ))}
             </div>
@@ -84,16 +86,21 @@ function App() {
     // console.log(createYearMatrix(2023))
     let data = createYearMatrix(2023);
     let matrix = shapeYearMatrix(data, 2023);
+
+    let oneMonth = matrix[0];
     return (
         <>
-            <SettingsBar></SettingsBar>
-            <div className="calWin">
+						<SettingsBar></SettingsBar>
+						<SingleMonthView props={oneMonth}></SingleMonthView>
+            {/** `<SettingsBar></SettingsBar>`
+            `<SingleMonthView month={oneMonth}></SingleMonthView>`
+            {`<div className="calWin">
                 {matrix.map((a0) => (
                     <div className="msc">
                         <MonthDisplay props={a0}></MonthDisplay>
                     </div>
                 ))}
-            </div>
+            </div>`**/}
         </>
     );
 }
