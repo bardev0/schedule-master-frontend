@@ -128,7 +128,7 @@ function App() {
             {
 // trzeba dodac zeby komponent nie bral calej array ale numer indexu z calej array
             }
-            <SingleMonthView array={matrix} currentDisplay={currentMonth - 1}></SingleMonthView>
+            <SingleMonthView array={matrix} currentDisplay={currentMonth}></SingleMonthView>
             {/** `<SettingsBar></SettingsBar>`
             `<SingleMonthView month={oneMonth}></SingleMonthView>`
             {`<div className="calWin">
