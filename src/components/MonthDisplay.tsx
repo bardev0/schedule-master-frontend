@@ -1,5 +1,5 @@
 import { DayLabelBar } from "./DayLabelBar";
-import { smartMonths } from "../logic";
+import { smartMonths } from "../utils/logic";
 import { WeekDisplay } from "./WeekDisplay";
 export function MonthDisplay(props: any) {
     return (

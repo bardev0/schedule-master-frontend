@@ -1,3 +1,6 @@
+@import "./EditUsersView.css";
+@import "./MainSettingsView.css";
+
 :root {
     --mscBgColor: lightblue;
     --weekRowColor: rgb(139, 92, 5);

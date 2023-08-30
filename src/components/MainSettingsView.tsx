@@ -1,5 +1,5 @@
 // Account Info, Payments, etc
-export function MainSettings() {
+export function MainSettingsView() {
     return (
         <>
             <div>Main Settings Placeholder</div>
