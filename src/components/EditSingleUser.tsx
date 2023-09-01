@@ -1,27 +1,12 @@
-import { useEffect } from "react";
-import { TEditSingleUserView } from "../utils/types";
+import { useEffect, useState } from "react";
 
-export function EditSingleUser(props: TEditSingleUserView) {
-    console.log(props);
-    if (props.user !== undefined) {
-        return (
-            <>
-                <div>Window for Editing single User</div>
-                <button
-                    onClick={() => {
-                        props.state({ display: "none" });
-                        props.userState("");
-                        console.log("c");
-                    }}
-                >
-                    Close
-                </button>
-                 { Object.entries(props.user).map((item, i) => <div><span>{item[0]}</span><span>{item[1]}</span></div>)}   
-                <p>{props.user.email}</p>
-            </>
-        );
-    }
-    // fetch user
-    // send data to db
-    // close window
+export function EditSingleUser(props: any) {
+    return (<>
+    <div><label>id</label>{props.user.id}</div>
+    <div><label>name </label>{props.user.name} <button>Edit</button></div>
+    <div>{props.user.surname}</div>
+    <div>{props.user.email}</div>
+    <div>{props.user.role}</div>
+    <div>{props.user.hourly}</div>
+    </>) 
 }

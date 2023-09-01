@@ -20,7 +20,8 @@ export type TMainSettingsView = {
 };
 
 export type TEditSingleUserView = {
-    user: TUserConsumer | undefined;
     state: any;
-    userState: any;
+    userId: string;
+    userSetter: any;
+    user: any;
 };

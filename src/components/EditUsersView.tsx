@@ -6,8 +6,20 @@ import { EditSingleUser } from "./EditSingleUser";
 export function EditUsersView(props: TEditUsersView) {
     let [userList, setUserList] = useState([]);
     let [currentEditUserId, setCurrentEditUserId] = useState("");
-    let [user, setUser] = useState(undefined);
-    let [displayEditSingleUserView, setDESUV] = useState({ display: "none" });
+    let [displayEditSingleUserView, setDESUV] = useState(false);
+    const [user, setUser] = useState(null);
+    const fetchData = () => {
+        fetch("http://localhost:2345/findUser", {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify({
+                userId: currentEditUserId,
+            }),
+            headers: { "Content-type": "application/json" },
+        })
+            .then((response) => response.json())
+            .then((d) => setUser(d));
+    };
 
     useEffect(() => {
         fetch("http://localhost:2345/userList")
@@ -16,20 +28,18 @@ export function EditUsersView(props: TEditUsersView) {
     }, []);
 
     useEffect(() => {
-        fetchUser();
-    }, [currentEditUserId]);
-
-    const fetchUser = () => {
         fetch("http://localhost:2345/findUser", {
             method: "POST",
             mode: "cors",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({ userId: currentEditUserId }),
         })
             .then((response) => response.json())
             .then((data) => setUser(data));
-    };
-
+    }, [currentEditUserId]);
     return (
         <>
             <div>
@@ -50,7 +60,7 @@ export function EditUsersView(props: TEditUsersView) {
                 {
                     // add separate element to user for CSS trickery
                 }
-                {userList.map((user: TUserConsumer) => (
+                {userList.map((user: TUserConsumer, idx) => (
                     <div>
                         <span>{user.id}</span>
                         <span>{user.name}</span>
@@ -62,25 +72,17 @@ export function EditUsersView(props: TEditUsersView) {
                         <button
                             onClick={() => {
                                 setCurrentEditUserId(user.id);
-                                setDESUV({ display: "block" });
+                                setDESUV(true);
                             }}
                         >
                             edit
                         </button>
                     </div>
                 ))}
-                {
-                    // condition if user is clicked and started editing
-                }
-                <div style={displayEditSingleUserView}>
-                    PP
-                    <EditSingleUser
-                        user={user}
-                        state={setDESUV}
-                        userState={setCurrentEditUserId}
-                    ></EditSingleUser>
-                </div>
             </div>
+            {
+                user == undefined ? <p>Not Loadad</p> : <EditSingleUser user={user}></EditSingleUser>
+            }
         </>
     );
 }
