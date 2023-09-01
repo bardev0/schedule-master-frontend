@@ -4,7 +4,7 @@ import { SingleMonthView } from "./components/SingleMonthView";
 import { createYearMatrix, shapeYearMatrix } from "../../grafik-src/utils";
 import { useState } from "react";
 import { EditUsersView } from "./components/EditUsersView";
-import { MainSettingsView  } from "./components/MainSettingsView";
+import { MainSettingsView } from "./components/MainSettingsView";
 
 function App() {
     // on first login grab and create new matrix
@@ -37,12 +37,13 @@ function App() {
                 // trzeba dodac zeby komponent nie bral calej array ale numer indexu z calej array
             }
             <div style={displayEditUsersView} className="editUsersView">
-                <EditUsersView></EditUsersView>
+                <EditUsersView state={setDisplayEditUsersView}></EditUsersView>
             </div>
             <div style={displayMainSettings} className="mainSettingsView">
-                <MainSettingsView></MainSettingsView>
+                <MainSettingsView
+                    state={setDisplayMainSettings}
+                ></MainSettingsView>
             </div>
-            
 
             <SingleMonthView
                 array={matrix}

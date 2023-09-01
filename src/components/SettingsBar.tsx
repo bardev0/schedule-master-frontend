@@ -1,14 +1,12 @@
 import { TViewProps } from "../utils/types";
 import { FillSettings } from "./FIllSettings";
-import { MainSettingsView } from "./MainSettingsView";
 import ViewSelector from "./ViewSelector";
 
 export default function SettingsBar(props: TViewProps) {
-    console.log(props.states[0]);
     return (
         <>
             <div className="settings">
-                <h1>Hello World</h1>
+                <h1>Company Name</h1>
                 <ViewSelector setM={props.props}></ViewSelector>
                 <FillSettings></FillSettings>
                 <button
