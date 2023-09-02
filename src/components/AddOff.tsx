@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { TAddOffProps } from "../utils/types";
 
-export function AddOff() {
+export function AddOff(props: TAddOffProps) {
+    // props.data[0] -> object
+    // props.data[1] -> dispacher
     const [view, setView] = useState(true);
     // grab user somhow
     const [currentDayOff, setCDO] = useState("");
     const [daysOff, setDaysOff] = useState<any[]>([]);
     const [startingDate, setSD] = useState("");
     const [endDate, setED] = useState("");
+    const [currentUser, setCurrentUser] = useState<any>()
 
+    const [userList, setUserList] = useState<any[]>()
+
+    useEffect( () => {
+       fetch("http://localhost:2345/userList")
+            .then((response) => response.json())
+            .then((data) => setUserList(data)); 
+    } )
     const saveDate = () => {
         let tempAry = [...daysOff];
         console.log(tempAry);
@@ -22,8 +33,6 @@ export function AddOff() {
         let newStartingDate = new Date(startingDate);
         let newEndDate = new Date(endDate);
         let datesArry = [];
-        console.log(newEndDate);
-        console.log(newStartingDate);
         if (newEndDate <= newStartingDate) {
             alert(
                 "Data zakonczenia urlopu nie moze byc wczesniejsza niz data jego rozpoczecia"
@@ -38,7 +47,6 @@ export function AddOff() {
             }
         }
 
-        console.log(datesArry);
         setDaysOff([...daysOff, ...datesArry]);
         /// error that ending date cant be eariler than staring one
     };
@@ -51,21 +59,32 @@ export function AddOff() {
 
     let sendDates = () => {
         //
-
+        let userOFFS = {
+            user: currentUser,
+            days: daysOff
+        }
+        props.data[1](userOFFS)
         // close window
-        alert("dates send to mgm");
+        alert("dates Send");
     };
 
     return (
         <>
             <div className="datepicker">
+                <button onClick={ () => { props.state[1](!props.state[0]) }}>Close</button>
+                <p>Select User</p>
+                <select onChange={ (e) => {setCurrentUser(e.target.value)} }>
+                    <option selected>Select User</option>
+                    {userList?.map( (item, idx) => <option value={item.id}>{item.name}</option> )
+
+}
+                </select>
                 <button onClick={() => setView(!view)}>
                     {view ? "One Day" : "Many Days"}
                 </button>
                 {view ? (
                     <div>
                         <label>Select Day Off</label>
-                        <p>Date selected : {currentDayOff}</p>
                         <input
                             type="date"
                             onChange={(e) => setCDO(e.target.value)}
@@ -120,7 +139,7 @@ export function AddOff() {
                         sendDates();
                     }}
                 >
-                    Send Days OFF TO MANAGER{" "}
+                    Send Days OFF
                 </button>
             </div>
         </>

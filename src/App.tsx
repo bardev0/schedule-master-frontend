@@ -11,46 +11,53 @@ function App() {
     let data = createYearMatrix(2023);
     let matrix = shapeYearMatrix(data, 2023);
 
+    const [currentMonth, setCurrentMonth] = useState(0);
+
+    /// do usunięcia -> drzewo zaleznosci
+    const [daysToChangeArry, setDaysToChange] = useState<any>({})
+
     useEffect(() => {
         let date = new Date();
         setCurrentMonth(date.getMonth());
     }, []);
 
-    // add function that grabs current month from Data and displays it as default
-    const [currentMonth, setCurrentMonth] = useState(0);
 
-    const [displayEditUsersView, setDisplayEditUsersView] = useState({
-        display: "none",
-    });
+    //// do przesunięcia na backend
+    useEffect( () => {
+        console.log(daysToChangeArry)
+        let user = daysToChangeArry.user
+        if (user == undefined) {
+            console.log("pierwsze uruchonmienie")
+        } else {
+            console.log(user)
+        }
+        console.log(matrix)
+    }, [daysToChangeArry] )
 
-    const [displayMainSettings, setDisplayMainSettings] = useState({
-        display: "none",
-    });
-
-    const showEditUsers = [displayEditUsersView, setDisplayEditUsersView];
-    const showMainSettings = [displayMainSettings, setDisplayMainSettings];
-
+    //// GOWNO FETCH -> doesnt work xDDDD 
+    const sendtoBackend = () => {
+        console.log('c')
+       fetch("http://localhost:2345/updateMatrixOffDays", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(daysToChangeArry),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+    }
+    
     return (
         <>
+            <button onClick={ () => {sendtoBackend} }>DEBUG</button>
             <SettingsBar
+                daysOff={[daysToChangeArry, setDaysToChange]}
                 currentMonth={currentMonth}
                 props={setCurrentMonth}
-                states={showEditUsers}
-                mainSettings={showMainSettings}
             ></SettingsBar>
-
-            {
-                // trzeba dodac zeby komponent nie bral calej array ale numer indexu z calej array
-            }
-            <div style={displayEditUsersView} className="editUsersView">
-                <EditUsersView state={setDisplayEditUsersView}></EditUsersView>
-            </div>
-            <div style={displayMainSettings} className="mainSettingsView">
-                <MainSettingsView
-                    state={setDisplayMainSettings}
-                ></MainSettingsView>
-            </div>
-
             <SingleMonthView
                 array={matrix}
                 currentDisplay={currentMonth}

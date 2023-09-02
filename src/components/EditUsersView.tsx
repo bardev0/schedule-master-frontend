@@ -108,8 +108,6 @@ export function EditUsersView(props: TEditUsersView) {
                         </button>
                     </div>
                 ))}
-            </div>
-
             {displayEdit ? (
                 <p> </p>
             ) : user == undefined ? (
@@ -121,7 +119,8 @@ export function EditUsersView(props: TEditUsersView) {
                     user={user}
                 ></EditSingleUser>
             )}
-            {displayAddUser ? (
+            {
+            displayAddUser ? (
                 <p> </p>
             ) : (
                 <AddUser
@@ -129,6 +128,9 @@ export function EditUsersView(props: TEditUsersView) {
                     update={[userChange, setUserChange]}
                 ></AddUser>
             )}
+
+            </div>
+
         </>
     );
 }

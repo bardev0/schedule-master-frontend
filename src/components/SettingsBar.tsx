@@ -41,7 +41,7 @@ export default function SettingsBar(props: TViewProps) {
                 >
                     MAIN SETTINGS
                 </button>
-                {vAddOff ? <></> : <AddOff></AddOff>}
+                {vAddOff ? <></> : <AddOff data={props.daysOff}state={[vAddOff, setVaddOff]}></AddOff>}
                 {vEditUsers ? (
                     <></>
                 ) : (

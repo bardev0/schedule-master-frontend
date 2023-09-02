@@ -1,6 +1,5 @@
 // Account Info, Payments, etc
 export function MainSettingsView(props: any) {
-    console.log(props.state);
     return (
         <>
             <div className="mainSettingsView">

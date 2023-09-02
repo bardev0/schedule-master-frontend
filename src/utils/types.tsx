@@ -6,10 +6,9 @@ export type TMonthsProps = {
 };
 
 export type TViewProps = {
+    daysOff: any;
     currentMonth: any;
     props: any;
-    states: Array<any>;
-    mainSettings: Array<any>;
 };
 
 export type TEditUsersView = {
@@ -27,4 +26,8 @@ export type TEditSingleUserView = {
     user: any;
 };
 
+export type TAddOffProps = {
+    data: Array<any>;
+    state: any
+}
 export type Roles = "Admin" | "Consumer";
