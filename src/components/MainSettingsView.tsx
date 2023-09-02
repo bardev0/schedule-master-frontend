@@ -1,11 +1,14 @@
 // Account Info, Payments, etc
 export function MainSettingsView(props: any) {
+    console.log(props.state);
     return (
         <>
-            <div>Main Settings Placeholder</div>
-            <button onClick={() => props.state({ display: "none" })}>
-                Close
-            </button>
+            <div className="mainSettingsView">
+                <h1>Main Settings Placeholder</h1>
+                <button onClick={() => props.state[1](!props.state[0])}>
+                    Close
+                </button>
+            </div>
         </>
     );
 }

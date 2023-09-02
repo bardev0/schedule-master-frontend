@@ -6,6 +6,7 @@ export type TMonthsProps = {
 };
 
 export type TViewProps = {
+    currentMonth: any;
     props: any;
     states: Array<any>;
     mainSettings: Array<any>;

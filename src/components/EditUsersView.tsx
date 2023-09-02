@@ -67,9 +67,9 @@ export function EditUsersView(props: TEditUsersView) {
     }, [currentEditUserId]);
     return (
         <>
-            <div>
+            <div className="editUsersView">
                 <h1>Manage Users</h1>
-                <button onClick={() => props.state({ display: "none" })}>
+                <button onClick={() => props.state[1](!props.state[0])}>
                     Close
                 </button>
                 <br></br>

@@ -16,6 +16,7 @@ export default function ViewSelector(props: any) {
 
     const monthsNUM = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
+    // do that curent month is selected first
     return (
         <>
             <div>

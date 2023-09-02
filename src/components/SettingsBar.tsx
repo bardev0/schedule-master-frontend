@@ -1,36 +1,61 @@
+import { useState } from "react";
 import { TViewProps } from "../utils/types";
-import { FillSettings } from "./FIllSettings";
+import { AddOff } from "./AddOff";
 import ViewSelector from "./ViewSelector";
-
+import { EditUsersView } from "./EditUsersView";
+import { MainSettingsView } from "./MainSettingsView";
 export default function SettingsBar(props: TViewProps) {
+    // select only one active view
+    let viewsArray = [];
+    let [vAddOff, setVaddOff] = useState(true);
+    let [vEditUsers, setVEditUsers] = useState(true);
+    let [vMainSettings, setVMainSettings] = useState(true);
+    /// move this CSS shit to tenary operors
     return (
         <>
             <div className="settings">
                 <h1>Company Name</h1>
-                <ViewSelector setM={props.props}></ViewSelector>
-                <FillSettings></FillSettings>
+                <ViewSelector
+                    cm={props.currentMonth}
+                    setM={props.props}
+                ></ViewSelector>
+                <button>PRopose Scheadu</button>
                 <button
                     onClick={() => {
-                        if (props.states[0].display == "none") {
-                            props.states[1]({ display: "block" });
-                        } else {
-                            props.states[1]({ display: "none" });
-                        }
+                        setVaddOff(!vAddOff);
+                    }}
+                >
+                    Add Off
+                </button>
+                <button
+                    onClick={() => {
+                        setVEditUsers(!vEditUsers);
                     }}
                 >
                     EDIT USERS
                 </button>
                 <button
                     onClick={() => {
-                        if (props.mainSettings[0].display == "none") {
-                            props.mainSettings[1]({ display: "block" });
-                        } else {
-                            props.mainSettings[1]({ display: "none" });
-                        }
+                        setVMainSettings(!vEditUsers);
                     }}
                 >
-                    MAIN SETTINGS PLACE HOLEDER
+                    MAIN SETTINGS
                 </button>
+                {vAddOff ? <></> : <AddOff></AddOff>}
+                {vEditUsers ? (
+                    <></>
+                ) : (
+                    <EditUsersView
+                        state={[vEditUsers, setVEditUsers]}
+                    ></EditUsersView>
+                )}
+                {vMainSettings ? (
+                    <></>
+                ) : (
+                    <MainSettingsView
+                        state={[vMainSettings, setVMainSettings]}
+                    ></MainSettingsView>
+                )}
             </div>
         </>
     );

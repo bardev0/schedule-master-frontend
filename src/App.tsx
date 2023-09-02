@@ -2,7 +2,7 @@ import "./styles/App.css";
 import SettingsBar from "./components/SettingsBar";
 import { SingleMonthView } from "./components/SingleMonthView";
 import { createYearMatrix, shapeYearMatrix } from "../../grafik-src/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditUsersView } from "./components/EditUsersView";
 import { MainSettingsView } from "./components/MainSettingsView";
 
@@ -10,6 +10,11 @@ function App() {
     // on first login grab and create new matrix
     let data = createYearMatrix(2023);
     let matrix = shapeYearMatrix(data, 2023);
+
+    useEffect(() => {
+        let date = new Date();
+        setCurrentMonth(date.getMonth());
+    }, []);
 
     // add function that grabs current month from Data and displays it as default
     const [currentMonth, setCurrentMonth] = useState(0);
@@ -28,6 +33,7 @@ function App() {
     return (
         <>
             <SettingsBar
+                currentMonth={currentMonth}
                 props={setCurrentMonth}
                 states={showEditUsers}
                 mainSettings={showMainSettings}

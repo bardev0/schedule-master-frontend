@@ -1,8 +1,6 @@
 import { WeekDisplay } from "./WeekDisplay";
 import { TMonthsProps } from "../utils/types";
 export function SingleMonthView(props: TMonthsProps) {
-    console.log(props.array);
-    console.log(props.currentDisplay);
     return (
         <>
             <div>
