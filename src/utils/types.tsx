@@ -25,3 +25,5 @@ export type TEditSingleUserView = {
     userSetter: any;
     user: any;
 };
+
+export type Roles = "Admin" | "Consumer";

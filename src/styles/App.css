@@ -69,3 +69,21 @@ body {
     margin-bottom: 7px;
     margin-left: 7px;
 }
+
+.singleElem {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.oneLine {
+    display: flex;
+    gap: 20px;
+}
+
+.userList > div {
+    display: inline;
+    background-color: azure;
+    margin: 10px;
+    width: 120px;
+}

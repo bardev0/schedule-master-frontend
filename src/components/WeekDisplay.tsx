@@ -14,6 +14,7 @@ export function WeekDisplay(props: any) {
                                 id={`${w.yearId}-${w.yearNum}`}
                             >
                                 <p className="dayNum">{w.dayNum}</p>
+                                <button>edit</button>
                                 <p>Maniek</p>
                                 <p>Kuba</p>
                             </div>
