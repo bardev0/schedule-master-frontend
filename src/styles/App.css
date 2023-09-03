@@ -23,8 +23,25 @@ body {
     width: 100vw;
     display: flex;
 }
+.scheaduleView {
+    background-color: lightgreen;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50vw;
+    height: 50vh;
+}
 
-.datepicker {
+.AddPShiftView {
+    background-color: lightgreen;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50vw;
+    height: 50vh;
+}
+
+.AddOffView {
     background-color: lightgreen;
     position: absolute;
     top: 25%;

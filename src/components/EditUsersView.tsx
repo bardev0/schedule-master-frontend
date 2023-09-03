@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TUserConsumer } from "../../../grafik-backend/src/types";
+import { TUserConsumer } from "../../../grefik-backend/src/types";
 import { TEditUsersView } from "../utils/types";
 import { EditSingleUser } from "./EditSingleUser";
 import { AddUser } from "./AddUser";
@@ -108,29 +108,26 @@ export function EditUsersView(props: TEditUsersView) {
                         </button>
                     </div>
                 ))}
-            {displayEdit ? (
-                <p> </p>
-            ) : user == undefined ? (
-                <p> </p>
-            ) : (
-                <EditSingleUser
-                    close={setUser}
-                    update={[userChange, setUserChange]}
-                    user={user}
-                ></EditSingleUser>
-            )}
-            {
-            displayAddUser ? (
-                <p> </p>
-            ) : (
-                <AddUser
-                    close={[displayAddUser, setDAD]}
-                    update={[userChange, setUserChange]}
-                ></AddUser>
-            )}
-
+                {displayEdit ? (
+                    <p> </p>
+                ) : user == undefined ? (
+                    <p> </p>
+                ) : (
+                    <EditSingleUser
+                        close={setUser}
+                        update={[userChange, setUserChange]}
+                        user={user}
+                    ></EditSingleUser>
+                )}
+                {displayAddUser ? (
+                    <p> </p>
+                ) : (
+                    <AddUser
+                        close={[displayAddUser, setDAD]}
+                        update={[userChange, setUserChange]}
+                    ></AddUser>
+                )}
             </div>
-
         </>
     );
 }

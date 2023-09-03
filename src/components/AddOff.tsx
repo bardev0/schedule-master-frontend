@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TAddOffProps } from "../utils/types";
-
+import mainArrayChanges from "../contexts/MainArrayChangeContext";
 export function AddOff(props: TAddOffProps) {
     // props.data[0] -> object
     // props.data[1] -> dispacher
@@ -10,15 +10,15 @@ export function AddOff(props: TAddOffProps) {
     const [daysOff, setDaysOff] = useState<any[]>([]);
     const [startingDate, setSD] = useState("");
     const [endDate, setED] = useState("");
-    const [currentUser, setCurrentUser] = useState<any>()
+    const [currentUser, setCurrentUser] = useState<any>();
+    const [userList, setUserList] = useState<any[]>();
+    const [changeA, setChangeA] = useContext(mainArrayChanges);
 
-    const [userList, setUserList] = useState<any[]>()
-
-    useEffect( () => {
-       fetch("http://localhost:2345/userList")
+    useEffect(() => {
+        fetch("http://localhost:2345/userList")
             .then((response) => response.json())
-            .then((data) => setUserList(data)); 
-    } )
+            .then((data) => setUserList(data));
+    });
     const saveDate = () => {
         let tempAry = [...daysOff];
         console.log(tempAry);
@@ -61,23 +61,50 @@ export function AddOff(props: TAddOffProps) {
         //
         let userOFFS = {
             user: currentUser,
-            days: daysOff
-        }
-        props.data[1](userOFFS)
+            days: daysOff,
+        };
+        // send data to server
+
+        fetch("http://localhost:2345/addOffs", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userOFFS),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+        // update main array
         // close window
+        props.state[1](!props.state[0]);
         alert("dates Send");
+        // cholernie złe rozwiązanie
+        setTimeout("", 20);
+        setChangeA(!changeA);
     };
 
     return (
         <>
-            <div className="datepicker">
-                <button onClick={ () => { props.state[1](!props.state[0]) }}>Close</button>
+            <div className="AddOffView">
+                <button
+                    onClick={() => {
+                        props.state[1](!props.state[0]);
+                    }}
+                >
+                    Close
+                </button>
                 <p>Select User</p>
-                <select onChange={ (e) => {setCurrentUser(e.target.value)} }>
+                <select
+                    onChange={(e) => {
+                        setCurrentUser(e.target.value);
+                    }}
+                >
                     <option selected>Select User</option>
-                    {userList?.map( (item, idx) => <option value={item.id}>{item.name}</option> )
-
-}
+                    {userList?.map((item, idx) => (
+                        <option value={item.id}>{item.name}</option>
+                    ))}
                 </select>
                 <button onClick={() => setView(!view)}>
                     {view ? "One Day" : "Many Days"}

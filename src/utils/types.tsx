@@ -1,4 +1,4 @@
-import { TUserConsumer } from "../../../grafik-backend/src/types";
+import { TUserConsumer } from "../../../grefik-backend/src/types";
 
 export type TMonthsProps = {
     array: Array<any>;
@@ -6,7 +6,6 @@ export type TMonthsProps = {
 };
 
 export type TViewProps = {
-    daysOff: any;
     currentMonth: any;
     props: any;
 };
@@ -27,7 +26,6 @@ export type TEditSingleUserView = {
 };
 
 export type TAddOffProps = {
-    data: Array<any>;
-    state: any
-}
+    state: any;
+};
 export type Roles = "Admin" | "Consumer";

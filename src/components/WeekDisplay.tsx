@@ -8,6 +8,7 @@ export function WeekDisplay(props: any) {
                     if (w == undefined) {
                         return <span></span>;
                     } else {
+                        // split this into components
                         return (
                             <div
                                 className="day"
@@ -15,8 +16,40 @@ export function WeekDisplay(props: any) {
                             >
                                 <p className="dayNum">{w.dayNum}</p>
                                 <button>edit</button>
+                                {
+                                    // with every user define edit zmiany
+                                }
+                                <button> + </button>
+                                <button> - </button>
                                 <p>Maniek</p>
                                 <p>Kuba</p>
+                                <br></br>
+                                <div>
+                                    <p>Proposed Shifts</p>
+                                    {w.proposedShifts !== undefined ? (
+                                        <div>
+                                            {w.proposedShifts.map(
+                                                (item: any) => (
+                                                    <p>{item.user}</p>
+                                                )
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <p></p>
+                                    )}
+                                </div>
+                                <div>
+                                    <p>Offs</p>
+                                    {w.offs !== undefined ? (
+                                        <div>
+                                            {w.offs.map((item: any) => (
+                                                <p>{item.user}</p>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p></p>
+                                    )}
+                                </div>
                             </div>
                         );
                     }
