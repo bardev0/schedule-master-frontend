@@ -52,7 +52,6 @@ export function AddPShift(props: any) {
         props.state[1](!props.state[0]);
         alert("proposed shifts SEND!");
         // cholernie złe rozwiązanie
-        setTimeout("", 20);
         setChangeA(!changeA);
     };
 

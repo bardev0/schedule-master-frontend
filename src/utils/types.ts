@@ -29,3 +29,9 @@ export type TAddOffProps = {
     state: any;
 };
 export type Roles = "Admin" | "Consumer";
+
+export type TNotesObj = {
+    note: string | undefined;
+    dayNum: number;
+    date: any;
+};

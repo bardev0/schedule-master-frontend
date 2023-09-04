@@ -16,9 +16,8 @@ export function ConvertProposedShiftsToActualOnes() {
         })
             .then((response) => response.json())
             .then((data) => console.log(data));
-            setChangeA(!changeA)
+        setChangeA(!changeA);
     };
-    
 
     // update main array
     return (

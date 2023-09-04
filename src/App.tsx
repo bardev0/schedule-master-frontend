@@ -15,6 +15,18 @@ function App() {
 
     // and usernames, instead of ID using context
 
+    const debugFetch = () => {
+        fetch("http://localhost:2345/fetchMatrix", {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+    };
     useEffect(() => {
         let date = new Date();
         setCurrentMonth(date.getMonth());
@@ -63,9 +75,7 @@ function App() {
             <mainArrayChanges.Provider value={[isAC, setIAC]}>
                 <button
                     onClick={() => {
-                        if (allYearsArray !== undefined) {
-                            console.log(allYearsArray[0]);
-                        }
+                        debugFetch();
                     }}
                 >
                     DEBUG
