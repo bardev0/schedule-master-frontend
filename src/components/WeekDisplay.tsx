@@ -15,15 +15,27 @@ export function WeekDisplay(props: any) {
                                 id={`${w.yearId}-${w.yearNum}`}
                             >
                                 <p className="dayNum">{w.dayNum}</p>
-                                <button>edit</button>
+                                <button>edit note</button>
                                 {
                                     // with every user define edit zmiany
                                 }
                                 <button> + </button>
                                 <button> - </button>
-                                <p>Maniek</p>
-                                <p>Kuba</p>
-                                <br></br>
+                                <div>
+                                    <p>Actual Shifts</p>
+                                    {w.actualShifts !== undefined ? (
+                                        <div>
+                                            {w.actualShifts.map(
+                                                (item: any) => (
+                                                    <p>{item.user}</p>
+                                                )
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <p></p>
+                                    )}
+
+                                </div>
                                 <div>
                                     <p>Proposed Shifts</p>
                                     {w.proposedShifts !== undefined ? (

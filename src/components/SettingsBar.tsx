@@ -7,33 +7,6 @@ import { MainSettingsView } from "./MainSettingsView";
 import { AddPShift } from "./AddPShift";
 import { ScheaduleView } from "./ScheaduleView";
 
-export function ConvertProposedShiftsToActualOnes() {
-    // reach endpoint on server to do a switch
-    const sendConvert = () => {
-        let convertOptions = {};
-        fetch("http://localhost:2345/convertShiftsPtoA", {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(convertOptions),
-        })
-            .then((response) => response.json())
-            .then((data) => console.log(data));
-    };
-    return (
-        <>
-            <div>
-                <button onClick={() => sendConvert()}>
-                    CONVERT MOTHERFUCKERS
-                </button>
-            </div>
-        </>
-    );
-}
-
 export default function SettingsBar(props: TViewProps) {
     // select only one active view
     let viewsArray = [];
@@ -53,7 +26,6 @@ export default function SettingsBar(props: TViewProps) {
                     setM={props.props}
                 ></ViewSelector>
                 <button>PRopose Scheadu</button>
-                <ConvertProposedShiftsToActualOnes></ConvertProposedShiftsToActualOnes>
                 <button
                     onClick={() => {
                         setVScheaduleLIST(!vScheaduleLIST);
