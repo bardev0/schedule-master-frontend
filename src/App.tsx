@@ -4,11 +4,14 @@ import { SingleMonthView } from "./components/SingleMonthView";
 import { createYearMatrix, shapeYearMatrix } from "../../grafik-src/utils";
 import { createContext, useEffect, useState } from "react";
 import mainArrayChanges from "./contexts/MainArrayChangeContext";
+import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
+import UserLoggedContext from "./contexts/UserLoggedContext";
 
 function App() {
     // on first login grab and create new matrix
     let data = createYearMatrix(2023);
     let matrix = shapeYearMatrix(data, 2023);
+    const [isUserLoggedIn, setUserLoggedIn] = useState(true);
     const [allYearsArray, setAllYearsArray] = useState<any[]>();
     const [currentMonth, setCurrentMonth] = useState(0);
     const [isAC, setIAC] = useState(false);
@@ -72,27 +75,35 @@ function App() {
     // fix selection of year
     return (
         <>
-            <mainArrayChanges.Provider value={[isAC, setIAC]}>
-                <button
-                    onClick={() => {
-                        debugFetch();
-                    }}
-                >
-                    DEBUG
-                </button>
-                <SettingsBar
-                    currentMonth={currentMonth}
-                    props={setCurrentMonth}
-                ></SettingsBar>
-                {allYearsArray == undefined ? (
-                    <p>Loading</p>
+            <div>
+                {isUserLoggedIn ? (
+                    <mainArrayChanges.Provider value={[isAC, setIAC]}>
+                        <UserLoggedContext.Provider value={setUserLoggedIn}>
+                            <button
+                                onClick={() => {
+                                    debugFetch();
+                                }}
+                            >
+                                DEBUG
+                            </button>
+                            <SettingsBar
+                                currentMonth={currentMonth}
+                                props={setCurrentMonth}
+                            ></SettingsBar>
+                            {allYearsArray == undefined ? (
+                                <p>Loading</p>
+                            ) : (
+                                <SingleMonthView
+                                    array={allYearsArray[0]}
+                                    currentDisplay={currentMonth}
+                                ></SingleMonthView>
+                            )}
+                        </UserLoggedContext.Provider>
+                    </mainArrayChanges.Provider>
                 ) : (
-                    <SingleMonthView
-                        array={allYearsArray[0]}
-                        currentDisplay={currentMonth}
-                    ></SingleMonthView>
+                    <UserNotLoggedIn></UserNotLoggedIn>
                 )}
-            </mainArrayChanges.Provider>
+            </div>
         </>
     );
 }

@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useState } from "react";
-import { TUserConsumer } from "../../../grafik-backend/src/types";
 import { EditSingleComp } from "./EditSingleComp";
 // item means key and value in array
 

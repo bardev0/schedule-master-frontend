@@ -6,6 +6,7 @@ import { EditUsersView } from "./EditUsersView";
 import { MainSettingsView } from "./MainSettingsView";
 import { AddPShift } from "./AddPShift";
 import { ScheaduleView } from "./ScheaduleView";
+import { LogOutBtn } from "./LogOutBtn";
 
 export default function SettingsBar(props: TViewProps) {
     // select only one active view
@@ -16,6 +17,9 @@ export default function SettingsBar(props: TViewProps) {
     let [vAddPShift, setVAddPShift] = useState(true);
     let [vScheaduleLIST, setVScheaduleLIST] = useState(true);
 
+    let logOutCurrentUser = () => {
+        fetch;
+    };
     /// move this CSS shit to tenary operors
     return (
         <>
@@ -92,6 +96,7 @@ export default function SettingsBar(props: TViewProps) {
                         state={[vScheaduleLIST, setVScheaduleLIST]}
                     ></ScheaduleView>
                 )}
+                <LogOutBtn></LogOutBtn>
             </div>
         </>
     );
