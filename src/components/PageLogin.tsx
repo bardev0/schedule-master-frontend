@@ -10,10 +10,11 @@ export function PageLogin() {
 
     const login = (response: any) => {
         console.log(response);
-        if (response.loginStatus == "succes") {
+        if (response.status == "succes") {
+            localStorage.setItem("id", response.id)
             navigate("/app");
         } else {
-            setErrorMsg(response.loginStatus);
+            setErrorMsg(response.status);
         }
     };
     const validateLogin = () => {

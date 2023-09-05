@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import UserLoggedContext from "../contexts/UserLoggedContext";
 export function LogOutBtn() {
-    let tempUserId = "YIeMHuHpY583Xfg";
-    const removeUserfromDb = (userId: string) => {
+    const removeUserfromDb = (userId: string | null) => {
         fetch("http://localhost:2345/removeLoggedUser", {
             method: "POST",
             mode: "cors",
@@ -22,7 +21,7 @@ export function LogOutBtn() {
             <button
                 onClick={() => {
                     setUserLogged(false);
-                    removeUserfromDb(tempUserId);
+                    removeUserfromDb(localStorage.getItem("id"));
                 }}
             >
                 LOG OUT
