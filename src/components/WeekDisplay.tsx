@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { TDay } from "../../../grafik-src/types";
+import { TDay } from "../../../grefik-backend/src/types";
 import { DayDisplay } from "./DayDisplay";
 export function WeekDisplay(props: any) {
     // console.log(props.props);

@@ -1,7 +1,7 @@
 import "./styles/App.css";
 import SettingsBar from "./components/SettingsBar";
 import { SingleMonthView } from "./components/SingleMonthView";
-import { createYearMatrix, shapeYearMatrix } from "../../grafik-src/utils";
+    import { createYearMatrix, shapeYearMatrix } from "../../grefik-backend/src/utils";
 import { createContext, useEffect, useState } from "react";
 import mainArrayChanges from "./contexts/MainArrayChangeContext";
 import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
