@@ -22,7 +22,7 @@ export function LogOutBtn() {
                 onClick={() => {
                     setUserLogged(false);
                     removeUserfromDb(localStorage.getItem("id"));
-                    localStorage.clear()
+                    localStorage.clear();
                 }}
             >
                 LOG OUT

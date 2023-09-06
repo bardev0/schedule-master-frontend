@@ -5,7 +5,7 @@ export function WeekDisplay(props: any) {
     return (
         <>
             <div className="weekRow">
-                {props.props.map((w: TDay) => {
+                {props.week.map((w: TDay) => {
                     if (w == undefined) {
                         return <span></span>;
                     } else {

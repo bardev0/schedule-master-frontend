@@ -1,12 +1,20 @@
-
 export type TMonthsProps = {
-    array: Array<any>;
-    currentDisplay: number;
+    arrayData: any;
+    month: number;
+    year: number;
 };
 
-export type TViewProps = {
+export type TSettingsBarViewProps = {
+    month: { value: number; set: any };
+    year: { value: number; set: any };
+    userData: any;
     currentMonth: any;
     props: any;
+};
+
+export type TMonthYearSelectorProps = {
+    month: { value: number; set: any };
+    year: { value: number; set: any };
 };
 
 export type TEditUsersView = {

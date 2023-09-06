@@ -5,6 +5,7 @@ export function PageRegister() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [company, setCompany] = useState("");
     const [promoCode, setPromoCode] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -21,6 +22,7 @@ export function PageRegister() {
             email: email,
             password: password,
             promoCode: promoCode,
+            companyName: company,
         };
 
         fetch("http://localhost:2345/addMainUser", {
@@ -53,6 +55,15 @@ export function PageRegister() {
                             setPassword(e.target.value);
                         }}
                         type="text"
+                    ></input>
+                </div>
+                <div>
+                    <label>Company Name</label>
+                    <input
+                        value={company}
+                        onChange={(e) => {
+                            setCompany(e.target.value);
+                        }}
                     ></input>
                 </div>
                 <div>

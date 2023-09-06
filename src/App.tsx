@@ -1,16 +1,18 @@
 import "./styles/App.css";
 import SettingsBar from "./components/SettingsBar";
 import { SingleMonthView } from "./components/SingleMonthView";
-    import { createYearMatrix, shapeYearMatrix } from "../../grefik-backend/src/utils";
-import { createContext, useEffect, useState, useRef} from "react";
+import {
+    createYearMatrix,
+    shapeYearMatrix,
+} from "../../grefik-backend/src/utils";
+import { useEffect, useState } from "react";
 import mainArrayChanges from "./contexts/MainArrayChangeContext";
 import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
 import UserLoggedContext from "./contexts/UserLoggedContext";
 
 function AppWrapper() {
-    
-    const [mainUserData, setMainUserData] = useState<any>()
-   const fetchUser = () => {
+    const [mainUserData, setMainUserData] = useState<any>();
+    const fetchUser = () => {
         fetch("http://localhost:2345/findMainuser", {
             method: "POST",
             mode: "cors",
@@ -18,24 +20,30 @@ function AppWrapper() {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({id: localStorage.getItem("id")})
+            body: JSON.stringify({ id: localStorage.getItem("id") }),
         })
             .then((response) => response.json())
-            .then((data) => { setMainUserData(data)});
+            .then((data) => {
+                setMainUserData(data);
+            });
     };
 
-    useEffect( () => {
-        fetchUser()
-    },[])
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
-    console.log(mainUserData)
+    console.log(mainUserData);
     return (
         <>
-         <div>
-            {mainUserData == undefined ? <p>nie ma</p> : <App userData={mainUserData}></App>}
-         </div>
+            <div>
+                {mainUserData == undefined ? (
+                    <p>nie ma</p>
+                ) : (
+                    <App userData={mainUserData}></App>
+                )}
+            </div>
         </>
-    )
+    );
 }
 
 function App(props: any) {
@@ -45,6 +53,7 @@ function App(props: any) {
     const [isUserLoggedIn, setUserLoggedIn] = useState(true);
     const [allYearsArray, setAllYearsArray] = useState<any[]>();
     const [currentMonth, setCurrentMonth] = useState(0);
+    const [currentYear, setCurrentYear] = useState(0);
     const [isAC, setIAC] = useState(false);
     // and usernames, instead of ID using context
 
@@ -56,12 +65,11 @@ function App(props: any) {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({id: localStorage.getItem("id")})
+            body: JSON.stringify({ id: localStorage.getItem("id") }),
         })
             .then((response) => response.json())
             .then((data) => setAllYearsArray(data.data));
     };
-    
 
     // DEBUG
     const debugFetch = () => {
@@ -80,6 +88,7 @@ function App(props: any) {
     useEffect(() => {
         let date = new Date();
         setCurrentMonth(date.getMonth());
+        setCurrentYear(date.getFullYear());
     }, []);
 
     useEffect(() => {
@@ -88,23 +97,19 @@ function App(props: any) {
         console.log(allYearsArray);
     }, [isAC]);
 
-
     //grab matrix from server
     // fix selection of year
     return (
         <>
-
             {/* <div>
                 <h1>Test</h1>
                 <button onClick={ () => {console.log(allYearsArray)}}> MORE DEBUG </button>
             </div> */}
 
             <div>
-                
                 {isUserLoggedIn ? (
                     <mainArrayChanges.Provider value={[isAC, setIAC]}>
                         <UserLoggedContext.Provider value={setUserLoggedIn}>
-                            <p> Test {props.userData.id}</p>
                             <button
                                 onClick={() => {
                                     debugFetch();
@@ -113,6 +118,15 @@ function App(props: any) {
                                 DEBUG
                             </button>
                             <SettingsBar
+                                month={{
+                                    value: currentMonth,
+                                    set: setCurrentMonth,
+                                }}
+                                year={{
+                                    value: currentYear,
+                                    set: setCurrentYear,
+                                }}
+                                userData={props.userData}
                                 currentMonth={currentMonth}
                                 props={setCurrentMonth}
                             ></SettingsBar>
@@ -120,8 +134,9 @@ function App(props: any) {
                                 <p>Loading</p>
                             ) : (
                                 <SingleMonthView
-                                    array={allYearsArray[0]}
-                                    currentDisplay={currentMonth}
+                                    month={currentMonth}
+                                    year={currentYear}
+                                    arrayData={allYearsArray}
                                 ></SingleMonthView>
                             )}
                         </UserLoggedContext.Provider>
