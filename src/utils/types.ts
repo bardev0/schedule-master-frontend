@@ -1,4 +1,3 @@
-import { TUserConsumer } from "../../../grefik-backend/src/types";
 
 export type TMonthsProps = {
     array: Array<any>;

@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
-
+import AppWrapper from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PageLanding } from "./components/PageLanding.tsx";
 import { PageLogin } from "./components/PageLogin.tsx";
@@ -16,7 +15,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/app",
-        element: <App></App>,
+        element: <AppWrapper></AppWrapper>,
     },
     {
         path: "/login",

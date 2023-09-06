@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import "../styles/LandingPage.css"
 export function PageLanding() {
     return (
         <>

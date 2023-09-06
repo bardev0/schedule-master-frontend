@@ -2,12 +2,43 @@ import "./styles/App.css";
 import SettingsBar from "./components/SettingsBar";
 import { SingleMonthView } from "./components/SingleMonthView";
     import { createYearMatrix, shapeYearMatrix } from "../../grefik-backend/src/utils";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useRef} from "react";
 import mainArrayChanges from "./contexts/MainArrayChangeContext";
 import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
 import UserLoggedContext from "./contexts/UserLoggedContext";
 
-function App() {
+function AppWrapper() {
+    
+    const [mainUserData, setMainUserData] = useState<any>()
+   const fetchUser = () => {
+        fetch("http://localhost:2345/findMainuser", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({id: localStorage.getItem("id")})
+        })
+            .then((response) => response.json())
+            .then((data) => { setMainUserData(data)});
+    };
+
+    useEffect( () => {
+        fetchUser()
+    },[])
+
+    console.log(mainUserData)
+    return (
+        <>
+         <div>
+            {mainUserData == undefined ? <p>nie ma</p> : <App userData={mainUserData}></App>}
+         </div>
+        </>
+    )
+}
+
+function App(props: any) {
     // on first login grab and create new matrix
     let data = createYearMatrix(2023);
     let matrix = shapeYearMatrix(data, 2023);
@@ -15,12 +46,27 @@ function App() {
     const [allYearsArray, setAllYearsArray] = useState<any[]>();
     const [currentMonth, setCurrentMonth] = useState(0);
     const [isAC, setIAC] = useState(false);
-
     // and usernames, instead of ID using context
 
+    const fetchMatrix = () => {
+        fetch("http://localhost:2345/fetchMatrix", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({id: localStorage.getItem("id")})
+        })
+            .then((response) => response.json())
+            .then((data) => setAllYearsArray(data.data));
+    };
+    
+
+    // DEBUG
     const debugFetch = () => {
         fetch("http://localhost:2345/fetchMatrix", {
-            method: "GET",
+            method: "POST",
             mode: "cors",
             headers: {
                 Accept: "application/json",
@@ -30,6 +76,7 @@ function App() {
             .then((response) => response.json())
             .then((data) => console.log(data));
     };
+
     useEffect(() => {
         let date = new Date();
         setCurrentMonth(date.getMonth());
@@ -41,44 +88,23 @@ function App() {
         console.log(allYearsArray);
     }, [isAC]);
 
+
     //grab matrix from server
-
-    const fetchMatrix = () => {
-        fetch("http://localhost:2345/fetchMatrix", {
-            method: "GET",
-            mode: "cors",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => setAllYearsArray(data));
-    };
-
-    //// GOWNO FETCH -> doesnt work xDDDD
-    const sendtoBackend = () => {
-        fetch("http://localhost:2345/modifyArray", {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ test: "apple" }),
-        })
-            .then((response) => response.json())
-            .then((data) => console.log(data));
-    };
-    // END OF GOWNO
-
     // fix selection of year
     return (
         <>
+
+            {/* <div>
+                <h1>Test</h1>
+                <button onClick={ () => {console.log(allYearsArray)}}> MORE DEBUG </button>
+            </div> */}
+
             <div>
+                
                 {isUserLoggedIn ? (
                     <mainArrayChanges.Provider value={[isAC, setIAC]}>
                         <UserLoggedContext.Provider value={setUserLoggedIn}>
+                            <p> Test {props.userData.id}</p>
                             <button
                                 onClick={() => {
                                     debugFetch();
@@ -108,4 +134,4 @@ function App() {
     );
 }
 
-export default App;
+export default AppWrapper;

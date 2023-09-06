@@ -16,10 +16,7 @@ export default function SettingsBar(props: TViewProps) {
     let [vMainSettings, setVMainSettings] = useState(true);
     let [vAddPShift, setVAddPShift] = useState(true);
     let [vScheaduleLIST, setVScheaduleLIST] = useState(true);
-
-    let logOutCurrentUser = () => {
-        fetch;
-    };
+    
     /// move this CSS shit to tenary operors
     return (
         <>
