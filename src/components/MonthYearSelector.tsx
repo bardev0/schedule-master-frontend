@@ -24,7 +24,11 @@ export default function MonthYearSelector(props: TMonthYearSelectorProps) {
         <>
             <div>
                 <div>Select Month / Year</div>
-                <select onChange={ (e) => {props.month.set(e.target.value)}}>
+                <select
+                    onChange={(e) => {
+                        props.month.set(e.target.value);
+                    }}
+                >
                     {monthsUTC.map((item, idx) => (
                         <option
                             selected={props.month.value == idx ? true : false}
@@ -34,7 +38,11 @@ export default function MonthYearSelector(props: TMonthYearSelectorProps) {
                         </option>
                     ))}
                 </select>
-                <select onChange={ (e) => {props.year.set(e.target.value)}}>
+                <select
+                    onChange={(e) => {
+                        props.year.set(e.target.value);
+                    }}
+                >
                     {yearsAhead.map((item, idx) => (
                         <option
                             selected={props.year.value == yearsAhead[idx]}

@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { mainRoute } from "../App";
+import routes from "../../../grefik-backend/src/routes";
 export function NewGrafik(props: any) {
     const [stratDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -11,16 +12,19 @@ export function NewGrafik(props: any) {
             );
         } else {
             let newG = {
+                id: localStorage.getItem("id"),
                 start: stratDate,
                 end: endDate,
             };
-            fetch("http://localhost:2345/addSchedule", {
+            console.log(newG);
+            fetch(`${mainRoute + routes.addSchedule}`, {
                 method: "POST",
                 mode: "cors",
                 body: JSON.stringify(newG),
                 headers: { "Content-type": "application/json" },
             })
                 .then((response) => response.json())
+                // .then( d => console.log(d))
                 .then((d) => props.stateOfList[1](!props.stateOfList[0]));
         }
     };

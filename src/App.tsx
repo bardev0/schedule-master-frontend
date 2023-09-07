@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import mainArrayChanges from "./contexts/MainArrayChangeContext";
 import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
 import UserLoggedContext from "./contexts/UserLoggedContext";
+import mainUserContext from "./contexts/MainUserContext";
+
+export const mainRoute = "http://localhost:2345/";
 
 function AppWrapper() {
     const [mainUserData, setMainUserData] = useState<any>();
@@ -39,7 +42,9 @@ function AppWrapper() {
                 {mainUserData == undefined ? (
                     <p>nie ma</p>
                 ) : (
-                    <App userData={mainUserData}></App>
+                    <mainUserContext.Provider value={mainUserData}>
+                        <App userData={mainUserData}></App>
+                    </mainUserContext.Provider>
                 )}
             </div>
         </>
