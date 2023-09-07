@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TRegisterData } from "../../../grefik-backend/src/types";
+import { MainHeader } from "./MainHeader";
+import { Title } from "./Title";
 export function PageRegister() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -36,48 +38,68 @@ export function PageRegister() {
     };
     return (
         <>
-            <div>
-                <h1>ShiftArtist</h1>
-                <div>
-                    {/** musi byc bardziej zaawansowne -> email i opcja zakupu z code reedem */}
-                    <label>email</label>
-                    <input
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="text"
-                    ></input>
-                </div>
-                <div>
-                    <label>password</label>
-                    <input
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        type="text"
-                    ></input>
-                </div>
-                <div>
-                    <label>Company Name</label>
-                    <input
-                        value={company}
-                        onChange={(e) => {
-                            setCompany(e.target.value);
-                        }}
-                    ></input>
-                </div>
-                <div>
-                    <label>Promo Code</label>
-                    <input
-                        value={promoCode}
-                        onChange={(e) => {
-                            setPromoCode(e.target.value);
-                        }}
-                        type="text"
-                    ></input>
-                </div>
-
-                <button onClick={() => register()}>Register</button>
+            <MainHeader></MainHeader>
+            <Title></Title>
+            <div className="underTitleContiner">
+                <h3>Regiser</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <label>email</label>
+                        </td>
+                        <td>
+                            <input
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="text"
+                            ></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>password</label>
+                        </td>
+                        <td>
+                            <input
+                                value={password}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }}
+                                type="text"
+                            ></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Company Name</label>
+                        </td>
+                        <td>
+                            <input
+                                value={company}
+                                onChange={(e) => {
+                                    setCompany(e.target.value);
+                                }}
+                            ></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Promo Code</label>
+                        </td>
+                        <td>
+                            <input
+                                value={promoCode}
+                                onChange={(e) => {
+                                    setPromoCode(e.target.value);
+                                }}
+                                type="text"
+                            ></input>
+                        </td>
+                    </tr>
+                </table>
+                <button className="LPbtn" onClick={() => register()}>
+                    Register
+                </button>
                 <p>{errorMsg}</p>
             </div>
         </>

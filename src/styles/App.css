@@ -9,12 +9,7 @@
     --dayBgColor: rosybrown;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
+/* body {
     padding-top: 10px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bodyBgColor);
@@ -30,9 +25,9 @@ body {
     left: 25%;
     width: 50vw;
     height: 50vh;
-}
+} */
 
-.AddPShiftView {
+/* .AddPShiftView {
     background-color: lightgreen;
     position: absolute;
     top: 25%;
@@ -54,8 +49,8 @@ body {
     width: 100vw;
     height: 100px;
     display: flex;
-    /* flex-grow: 1; */
-}
+    flex-grow: 1;
+} */
 
 /* .calWin {
     display: flex;
@@ -65,7 +60,7 @@ body {
     gap: 40px;
 } */
 
-.msc {
+/* .msc {
     display: grid;
     grid-template-columns: max-content();
     grid-template-rows: max-content();
@@ -116,4 +111,4 @@ body {
 .loginPage {
     all: unset;
     background-color: white;
-}
+} */

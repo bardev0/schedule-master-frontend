@@ -1,18 +1,13 @@
 import { Link } from "react-router-dom";
 import "../styles/LandingPage.css";
+import { MainHeader } from "./MainHeader";
+import { Title } from "./Title";
 export function PageLanding() {
     return (
         <>
-            <div>
-                <div>
-                    <Link to="/login">
-                        <p>Login</p>
-                    </Link>
-                    <Link to="/register">
-                        <p>Register</p>
-                    </Link>
-                </div>
-                <h1>ShiftArtist</h1>
+            <div className="LandingPage">
+                <MainHeader></MainHeader>
+                <Title></Title>
             </div>
         </>
     );

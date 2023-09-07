@@ -1,19 +1,15 @@
-import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { Title } from "./Title";
 export function PageRegisterSuccesful() {
-    const navigate = useNavigate();
-
     return (
         <>
-            <div>
+            <div className="MainHeader"></div>
+            <Title></Title>
+            <div className="underTitleContiner">
                 <h2>RegisterSuccesfull!</h2>
-                <button
-                    onClick={() => {
-                        navigate("/login");
-                    }}
-                >
-                    Log in
-                </button>
+                <Link className="headerBtn" to="./login">
+                    Log In
+                </Link>
             </div>
         </>
     );

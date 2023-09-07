@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../styles/App.css";
 import { TLoginCredentials } from "../../../grefik-backend/src/types";
 import { useNavigate } from "react-router-dom";
+import { MainHeader } from "./MainHeader";
+import { Title } from "./Title";
 export function PageLogin() {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -34,32 +36,46 @@ export function PageLogin() {
     };
     return (
         <>
-            <div className="loginPage">
-                <h1>ShiftArtist</h1>
+            <MainHeader></MainHeader>
+            <Title></Title>
+            <div className="underTitleContiner">
                 <h3>Login</h3>
-                <div>
-                    <label>email</label>
-                    <input
-                        value={username}
-                        onChange={(e) => {
-                            setUsername(e.target.value);
-                        }}
-                        type="text"
-                    ></input>
+                <table>
+                    <tr>
+                        <td>
+                            <label>email</label>
+                        </td>
+                        <td>
+                            <input
+                                value={username}
+                                onChange={(e) => {
+                                    setUsername(e.target.value);
+                                }}
+                                type="text"
+                            ></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>password</label>
+                        </td>
+                        <td>
+                            <input
+                                value={password}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }}
+                                type="text"
+                            ></input>
+                        </td>
+                    </tr>
+                </table>
+                <div className="CheckBox">
+                    <label>Keep me loged in</label>
+                    <input type="checkbox"></input>
                 </div>
-                <div>
-                    <label>password</label>
-                    <input
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        type="text"
-                    ></input>
-                </div>
-                <label>Keep me loged in</label>
-                <input type="checkbox"></input>
                 <button
+                    className="LPbtn"
                     onClick={() => {
                         validateLogin();
                     }}
