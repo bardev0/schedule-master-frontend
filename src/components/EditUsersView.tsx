@@ -32,18 +32,7 @@ export function EditUsersView(props: TEditUsersView) {
             .then((d) => console.log(d));
         setUserChange(!userChange);
     };
-    const fetchData = () => {
-        fetch("http://localhost:2345/findUser", {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify({
-                userId: currentEditUserId,
-            }),
-            headers: { "Content-type": "application/json" },
-        })
-            .then((response) => response.json())
-            .then((d) => setUser(d));
-    };
+
 
     useEffect(() => {
         fetch("http://localhost:2345/userList")
@@ -80,7 +69,7 @@ export function EditUsersView(props: TEditUsersView) {
                 {
                     // add separate element to user for CSS trickery
                 }
-                {userList.map((user: TUserConsumer, idx) => (
+                {userList.map((user: TUserConsumer) => (
                     <div className="userList">
                         <div>{user.id}</div>
                         <div>{user.name}</div>

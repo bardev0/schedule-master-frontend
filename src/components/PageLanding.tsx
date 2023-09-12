@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../styles/LandingPage.css";
 import { MainHeader } from "./MainHeader";
 import { Title } from "./Title";

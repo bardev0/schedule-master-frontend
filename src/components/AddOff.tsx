@@ -102,7 +102,7 @@ export function AddOff(props: TAddOffProps) {
                     }}
                 >
                     <option selected>Select User</option>
-                    {userList?.map((item, idx) => (
+                    {userList?.map((item) => (
                         <option value={item.id}>{item.name}</option>
                     ))}
                 </select>
@@ -152,7 +152,7 @@ export function AddOff(props: TAddOffProps) {
                         <p key={idx}>
                             {item.toDateString()}{" "}
                             <button
-                                onClick={(e) => {
+                                onClick={() => {
                                     removeDate(idx);
                                 }}
                             >

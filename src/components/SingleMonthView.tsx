@@ -11,7 +11,7 @@ export function SingleMonthView(props: TMonthsProps) {
                  * NIE DZIALA styczeń 2024 => jest w array, źle się wyświetla
                  */}
 
-                {props.arrayData[props.year][props.month].map((week, idx) => (
+                {props.arrayData[props.year][props.month].map((week: any) => (
                     <WeekDisplay week={week}></WeekDisplay>
                 ))}
                 {/* {props?.array[props.currentDisplay].map((week: any) => (

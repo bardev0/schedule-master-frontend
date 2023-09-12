@@ -38,7 +38,7 @@ export function ScheaduleView(props: any) {
             body: JSON.stringify({ id: mainUserData.id, idG: id }),
         })
             .then((response) => response.json())
-            .then((data) => setLChanged(!isLChanged));
+            .then(() => setLChanged(!isLChanged));
     };
 
     const changeStatus = (id: number) => {
@@ -52,7 +52,7 @@ export function ScheaduleView(props: any) {
             body: JSON.stringify({ id: mainUserData.id, idG: id }),
         })
             .then((response) => response.json())
-            .then((data) => setLChanged(!isLChanged));
+            .then(() => setLChanged(!isLChanged));
     };
     useEffect(() => {
         grabListeGrafikow();
@@ -81,7 +81,7 @@ export function ScheaduleView(props: any) {
                     checkOtherG={[lista, setLista]}
                 ></NewGrafik>
                 {lista !== undefined ? (
-                    lista.default.map((item: TGrafik, idx: number) => (
+                    lista.default.map((item: TGrafik) => (
                         <div>
                             {item.id} {item.status}{" "}
                             <button>Preview Stats</button>

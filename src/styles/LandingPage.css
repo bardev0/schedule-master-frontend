@@ -75,8 +75,5 @@ h3 {
     margin-left: 37px;
     justify-content: right;
     align-items: center;
-}
-
-.CheckBox > input {
-    margin-left: 5px;
+    margin-top: 3px;
 }

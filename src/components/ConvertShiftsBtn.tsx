@@ -5,7 +5,6 @@ export function ConvertProposedShiftsToActualOnes() {
     const [changeA, setChangeA] = useContext(mainArrayChanges);
 
     const sendConvert = () => {
-        let convertOptions = {};
         fetch("http://localhost:2345/convertShiftsToActive", {
             method: "GET",
             mode: "cors",

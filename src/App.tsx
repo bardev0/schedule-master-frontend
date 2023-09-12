@@ -1,10 +1,6 @@
 import "./styles/App.css";
 import SettingsBar from "./components/SettingsBar";
 import { SingleMonthView } from "./components/SingleMonthView";
-import {
-    createYearMatrix,
-    shapeYearMatrix,
-} from "../../grefik-backend/src/utils";
 import { useEffect, useState } from "react";
 import mainArrayChanges from "./contexts/MainArrayChangeContext";
 import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
@@ -52,9 +48,6 @@ function AppWrapper() {
 }
 
 function App(props: any) {
-    // on first login grab and create new matrix
-    let data = createYearMatrix(2023);
-    let matrix = shapeYearMatrix(data, 2023);
     const [isUserLoggedIn, setUserLoggedIn] = useState(true);
     const [allYearsArray, setAllYearsArray] = useState<any[]>();
     const [currentMonth, setCurrentMonth] = useState(0);

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NotesElement } from "./NotesElement";
 
 export function DayDisplay(props: any) {

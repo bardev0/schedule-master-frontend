@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export function EditSingleComp({ item }) {
+export function EditSingleComp(props: any) {
     let [editable, setEditable] = useState(true);
     let [eBtn, setEBtn] = useState("Edit");
-    let [itemVal, setItemVal] = useState(item[0]);
+    let [itemVal, setItemVal] = useState(props.item[0]);
     return (
         <>
             <div className="singleElem">
@@ -14,7 +14,7 @@ export function EditSingleComp({ item }) {
                         value={itemVal}
                         onChange={(e) => {
                             setItemVal(e.target.value);
-                            item[1](e.target.value);
+                            props.item[1](e.target.value);
                         }}
                     ></input>
                 )}

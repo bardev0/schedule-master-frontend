@@ -25,7 +25,7 @@ export function NewGrafik(props: any) {
             })
                 .then((response) => response.json())
                 // .then( d => console.log(d))
-                .then((d) => props.stateOfList[1](!props.stateOfList[0]));
+                .then(() => props.stateOfList[1](!props.stateOfList[0]));
         }
     };
 
@@ -48,7 +48,7 @@ export function NewGrafik(props: any) {
                 ></input>
 
                 <button
-                    onClick={(e) => {
+                    onClick={() => {
                         checkAndSend();
                     }}
                 >

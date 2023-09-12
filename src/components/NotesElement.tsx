@@ -1,11 +1,12 @@
 import { useState, useContext, useEffect } from "react";
 import { TNotesObj } from "../utils/types";
 import mainArrayChanges from "../contexts/MainArrayChangeContext";
+import mainUserContext from "../contexts/MainUserContext";
 export function NotesElement(props: any) {
     const [notesValue, setNotesValue] = useState(props.parentId[4]);
     const [isEditNoteVisible, setEditNoteVisible] = useState(false);
     const [changeA, setChangeA] = useContext(mainArrayChanges);
-
+    const mainUserData = useContext(mainUserContext)
     const changeEditView = () => {
         sendNotesValue();
         setEditNoteVisible(!isEditNoteVisible);
@@ -14,6 +15,7 @@ export function NotesElement(props: any) {
 
     const sendNotesValue = () => {
         let noteObj: TNotesObj = {
+            id: mainUserData.id,
             date: new Date(
                 `${props.parentId[0]}-${props.parentId[2]}-${props.parentId[3]}`
             ),
@@ -48,7 +50,6 @@ export function NotesElement(props: any) {
         setEditNoteVisible(!isEditNoteVisible);
         setChangeA(!changeA);
     };
-    const notesChanged = () => {};
     return (
         <>
             <div className="NotesElement">

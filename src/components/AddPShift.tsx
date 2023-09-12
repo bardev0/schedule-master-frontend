@@ -71,7 +71,7 @@ export function AddPShift(props: any) {
                     }}
                 >
                     <option selected>Select User</option>
-                    {userList?.map((item, idx) => (
+                    {userList?.map((item) => (
                         <option value={item.id}>{item.name}</option>
                     ))}
                 </select>
@@ -89,7 +89,7 @@ export function AddPShift(props: any) {
                     <div>
                         <p>{item.toDateString()}</p>
                         <button
-                            onClick={(e) => {
+                            onClick={() => {
                                 removeDate(idx);
                             }}
                         >

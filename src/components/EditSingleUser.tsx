@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { EditSingleComp } from "./EditSingleComp";
 // item means key and value in array
 

@@ -10,7 +10,6 @@ import { LogOutBtn } from "./LogOutBtn";
 
 export default function SettingsBar(props: TSettingsBarViewProps) {
     // select only one active view
-    let viewsArray = [];
     let [vAddOff, setVaddOff] = useState(true);
     let [vEditUsers, setVEditUsers] = useState(true);
     let [vMainSettings, setVMainSettings] = useState(true);
@@ -21,12 +20,18 @@ export default function SettingsBar(props: TSettingsBarViewProps) {
     return (
         <>
             <div className="settings">
+                <div className="firstSettingsElement">
+
                 <h1>{props.userData.companyName}</h1>
-                <MonthYearSelector
+<MonthYearSelector
                     month={{ value: props.month.value, set: props.month.set }}
                     year={{ value: props.year.value, set: props.year.set }}
                 ></MonthYearSelector>
-                <button>PRopose Scheadu</button>
+                </div>
+                
+                <div>
+                    
+                    <button>Propose Schedule</button>
                 <button
                     onClick={() => {
                         setVScheaduleLIST(!vScheaduleLIST);
@@ -39,7 +44,7 @@ export default function SettingsBar(props: TSettingsBarViewProps) {
                         setVAddPShift(!vAddPShift);
                     }}
                 >
-                    Add P Shift
+                    Add Proposed Shift
                 </button>
                 <button
                     onClick={() => {
@@ -55,13 +60,22 @@ export default function SettingsBar(props: TSettingsBarViewProps) {
                 >
                     EDIT USERS
                 </button>
+
+
+                    </div>
+
+                <div className="lastSettingsElement">
                 <button
                     onClick={() => {
-                        setVMainSettings(!vEditUsers);
+                        setVMainSettings(!vMainSettings);
                     }}
                 >
                     MAIN SETTINGS
                 </button>
+                <LogOutBtn></LogOutBtn>
+                    
+                    </div>   
+
                 {vAddPShift ? (
                     <></>
                 ) : (
@@ -93,7 +107,6 @@ export default function SettingsBar(props: TSettingsBarViewProps) {
                         state={[vScheaduleLIST, setVScheaduleLIST]}
                     ></ScheaduleView>
                 )}
-                <LogOutBtn></LogOutBtn>
             </div>
         </>
     );
