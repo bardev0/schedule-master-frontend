@@ -14,6 +14,7 @@ export function EditSingleUser(props: any) {
         let [role, setRole] = useState(null);
         let [email, setEmail] = useState(null);
         let [hourly, setHourly] = useState(null);
+        let [nick, setNick] = useState(null);
 
         useEffect(() => {
             setUser(props.user);
@@ -22,6 +23,7 @@ export function EditSingleUser(props: any) {
             setRole(props.user.role);
             setEmail(props.user.email);
             setHourly(props.user.hourly);
+            setNick(props.user.nick);
         }, []);
 
         let saveUser = () => {
@@ -32,6 +34,7 @@ export function EditSingleUser(props: any) {
                 role: role,
                 email: email,
                 hourly: hourly,
+                nick: nick,
                 parent: mainUserData.id,
             };
             console.log(newUser);
@@ -72,6 +75,12 @@ export function EditSingleUser(props: any) {
                         <label>surname</label>
                         <EditSingleComp
                             item={[props.user.surname, setSurname]}
+                        ></EditSingleComp>
+                    </div>
+                    <div className="oneLine">
+                        <label>nick</label>
+                        <EditSingleComp
+                            item={[props.user.nick, setNick]}
                         ></EditSingleComp>
                     </div>
                     <div className="oneLine">

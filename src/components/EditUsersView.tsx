@@ -85,6 +85,7 @@ export function EditUsersView(props: TEditUsersView) {
                         <div>{user.id}</div>
                         <div>{user.name}</div>
                         <div>{user.surname}</div>
+                        <div>{user.nick}</div>
                         <div>{user.role}</div>
                         <div>{user.email}</div>
                         <div>{user.hourly} </div>

@@ -1,18 +1,30 @@
 import { useContext, useEffect, useState } from "react";
 import mainArrayChanges from "../contexts/MainArrayChangeContext";
-
+import mainUserContext from "../contexts/MainUserContext";
+import { mainRoute } from "../App";
+import routes from "../../../grefik-backend/src/routes";
 export function AddPShift(props: any) {
     const [userList, setUserList] = useState<any[]>([]);
     const [currentUser, setCurrentUser] = useState<any>();
     const [currentShiftDay, setCSD] = useState("");
     const [propsedShifts, setPropsedShifts] = useState<any[]>([]);
     const [changeA, setChangeA] = useContext(mainArrayChanges);
+    const mainUserData = useContext(mainUserContext);
 
     useEffect(() => {
-        fetch("http://localhost:2345/userList")
+        fetch(`${mainRoute}${routes.subUsersList}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ parentId: mainUserData.id }),
+        })
             .then((response) => response.json())
             .then((data) => setUserList(data));
-    });
+    }, []);
+
     let removeDate = (idx: number) => {
         let tempAry2 = [...propsedShifts];
         tempAry2.splice(idx, 1);
@@ -36,7 +48,7 @@ export function AddPShift(props: any) {
         };
         // send data to server
 
-        fetch("http://localhost:2345/addProposedShift", {
+        fetch(`${mainRoute}${routes.addProposedShifts}`, {
             method: "POST",
             mode: "cors",
             headers: {

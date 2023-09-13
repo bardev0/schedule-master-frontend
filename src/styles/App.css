@@ -16,6 +16,7 @@ body {
     overflow: hidden;
     width: 100vw;
     display: flex;
+    font-size: small;
 }
 
 .settings {
@@ -112,4 +113,16 @@ body {
 
 .lastSettingsElement {
     margin-right: 20px;
+}
+
+.smallRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.smallRemoveButton {
+    width: 15px;
+
+    height: 15px;
+    margin-right: 10px;
 }

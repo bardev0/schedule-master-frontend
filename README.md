@@ -19,3 +19,7 @@ main :
 
 -   migrate to monorepo
 -   add script for deployment
+
+// removeProposedShits się zacina
+// nie mozna dodac offa na nastepny rok
+// notatki przeskakuja w miesiacu

@@ -12,6 +12,7 @@ export function AddUser(props: any) {
     let [role, setRole] = useState("Consumer");
     let [email, setEmail] = useState("");
     let [hourly, setHourly] = useState(0);
+    let [nick, setNick] = useState("");
     let roles: Roles[] = ["Consumer", "Admin"];
 
     const mainUserData = useContext(mainUserContext);
@@ -21,6 +22,7 @@ export function AddUser(props: any) {
             name: name,
             surname: surname,
             role: role,
+            nick: nick,
             email: email,
             hourly: hourly,
             parent: mainUserData.id,
@@ -56,6 +58,16 @@ export function AddUser(props: any) {
                         type="text"
                         onChange={(e) => {
                             setSurname(e.target.value);
+                        }}
+                    ></input>
+                </div>
+
+                <div>
+                    <label>nick</label>
+                    <input
+                        type="text"
+                        onChange={(e) => {
+                            setNick(e.target.value);
                         }}
                     ></input>
                 </div>

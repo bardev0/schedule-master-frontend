@@ -1,6 +1,39 @@
 import { NotesElement } from "./NotesElement";
-
+import { mainRoute } from "../App";
+import routes from "../../../grefik-backend/src/routes";
+import { useContext } from "react";
+import mainArrayChanges from "../contexts/MainArrayChangeContext";
+import UserNickContext from "../contexts/UserNickContext";
 export function DayDisplay(props: any) {
+    const [changeA, setChangeA] = useContext(mainArrayChanges);
+    const nicks = useContext(UserNickContext);
+    const removeSingleProposedShift = (userId: any, date: any) => {
+        console.log(userId, date);
+        fetch(`${mainRoute}${routes.removeProposedShifts}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user: userId, days: [date] }),
+        }).then(() => setChangeA(!changeA));
+    };
+
+    const removeSingleOff = (userId: any, date: any) => {
+        console.log(userId, date);
+        fetch(`${mainRoute}${routes.removeOffs}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user: userId, days: [date] }),
+        }).then(() => setChangeA(!changeA));
+
+        // refresh main array
+    };
     return (
         <>
             <div className="day" id={`${props.w.yearId}-${props.w.yearNum}`}>
@@ -34,7 +67,20 @@ export function DayDisplay(props: any) {
                     {props.w.proposedShifts !== undefined ? (
                         <div>
                             {props.w.proposedShifts.map((item: any) => (
-                                <p>{item.user}</p>
+                                <span className="smallRow">
+                                    <p>{item.user}</p>
+                                    <button
+                                        className="smallRemoveButton"
+                                        onClick={() =>
+                                            removeSingleProposedShift(
+                                                item.user,
+                                                `${props.w.yearId}-${props.w.monthId}-${props.w.dayNum}`
+                                            )
+                                        }
+                                    >
+                                        -
+                                    </button>
+                                </span>
                             ))}
                         </div>
                     ) : (
@@ -46,7 +92,20 @@ export function DayDisplay(props: any) {
                     {props.w.offs !== undefined ? (
                         <div>
                             {props.w.offs.map((item: any) => (
-                                <p>{item.user}</p>
+                                <span className="smallRow">
+                                    <p>{nicks[item.user]}</p>
+                                    <button
+                                        className="smallRemoveButton"
+                                        onClick={() =>
+                                            removeSingleOff(
+                                                item.user,
+                                                `${props.w.yearId}-${props.w.monthId}-${props.w.dayNum}`
+                                            )
+                                        }
+                                    >
+                                        -
+                                    </button>
+                                </span>
                             ))}
                         </div>
                     ) : (
@@ -57,20 +116,3 @@ export function DayDisplay(props: any) {
         </>
     );
 }
-// return (<>
-// <div className="weekRow">
-//                             <div
-//                                 className="day"
-//                                 id={`${w.yearId}-${w.yearNum}`}
-//                             >
-//                                 <p className="dayNum">{w.dayNum}</p>
-//
-//                                 {
-//                                     // with every user define edit zmiany
-//                                 }
-//                             </div>
-//                         );
-//                     }
-//                 })}
-//             </div>
-// </>)}
