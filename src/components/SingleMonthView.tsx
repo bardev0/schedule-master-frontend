@@ -10,10 +10,13 @@ export function SingleMonthView(props: TMonthsProps) {
                 {/** IF WEEK ARRAY IS EQUAL 0 do not display
                  * NIE DZIALA styczeń 2024 => jest w array, źle się wyświetla
                  */}
-
-                {props.arrayData[props.year][props.month].map((week: any) => (
-                    <WeekDisplay week={week}></WeekDisplay>
-                ))}
+                {props.arrayData[props.year][props.month].map((week: any) => {
+                    console.log(week);
+                    if (week.lenght == 0) {
+                    } else {
+                        return <WeekDisplay week={week}></WeekDisplay>;
+                    }
+                })}
                 {/* {props?.array[props.currentDisplay].map((week: any) => (
                     <WeekDisplay props={week}></WeekDisplay>
                 ))} */}

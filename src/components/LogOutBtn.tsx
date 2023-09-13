@@ -19,6 +19,7 @@ export function LogOutBtn() {
     return (
         <>
             <button
+                className="settingBtn"
                 onClick={() => {
                     setUserLogged(false);
                     removeUserfromDb(localStorage.getItem("id"));

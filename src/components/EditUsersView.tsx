@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { TUserConsumer } from "../../../grefik-backend/src/types";
 import { TEditUsersView } from "../utils/types";
 import { EditSingleUser } from "./EditSingleUser";
 import { AddUser } from "./AddUser";
 
+import { mainRoute } from "../App";
+import routes from "../../../grefik-backend/src/routes";
+import mainUserContext from "../contexts/MainUserContext";
 export function EditUsersView(props: TEditUsersView) {
     let [userList, setUserList] = useState([]);
     let [currentEditUserId, setCurrentEditUserId] = useState("");
@@ -11,6 +14,7 @@ export function EditUsersView(props: TEditUsersView) {
     let [displayEdit, setDE] = useState(false);
     let [userChange, setUserChange] = useState(false);
 
+    const mainUserData = useContext(mainUserContext);
     const [user, setUser] = useState(null);
 
     const prepUserToRemove = (id: any) => {
@@ -19,44 +23,51 @@ export function EditUsersView(props: TEditUsersView) {
     const removeUser = () => {
         console.log("c");
         console.log(currentEditUserId);
-        fetch("http://localhost:2345/removeUser", {
+        fetch(`${mainRoute}${routes.removeSubUser}`, {
             method: "POST",
             mode: "cors",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId: currentEditUserId }),
+            body: JSON.stringify({ subUserId: currentEditUserId }),
         })
             .then((r) => r.json())
             .then((d) => console.log(d));
         setUserChange(!userChange);
     };
 
-
     useEffect(() => {
-        fetch("http://localhost:2345/userList")
-            .then((response) => response.json())
-            .then((data) => setUserList(data));
-    }, [userChange]);
-
-    useEffect(() => {
-        setUser(null);
-        fetch("http://localhost:2345/findUser", {
+        fetch(`${mainRoute}${routes.subUsersList}`, {
             method: "POST",
             mode: "cors",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId: currentEditUserId }),
+            body: JSON.stringify({ parentId: mainUserData.id }),
+        })
+            .then((response) => response.json())
+            .then((data) => setUserList(data));
+    }, [userChange]);
+
+    useEffect(() => {
+        setUser(null);
+        fetch(`${mainRoute}${routes.findSingleSubUser}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ subUserId: currentEditUserId }),
         })
             .then((response) => response.json())
             .then((data) => setUser(data));
     }, [currentEditUserId]);
     return (
         <>
-            <div className="editUsersView">
+            <div className="editUsersView subSetting">
                 <h1>Manage Users</h1>
                 <button onClick={() => props.state[1](!props.state[0])}>
                     Close

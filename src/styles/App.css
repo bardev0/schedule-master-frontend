@@ -1,5 +1,4 @@
-@import "./EditUsersView.css";
-@import "./MainSettingsView.css";
+@import "./SubSettingsView.css";
 
 :root {
     --mscBgColor: lightblue;
@@ -18,30 +17,7 @@ body {
     width: 100vw;
     display: flex;
 }
-.scheaduleView {
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50vw;
-    height: 50vh;
-}
-.AddPShiftView {
-    /* background-color: lightgreen; */
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50vw;
-    height: 50vh;
-}
 
-.AddOffView {
-    /* background-color: lightgreen; */
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50vw;
-    height: 50vh;
-}
 .settings {
     /* background-color: var(--settingsBgColor); */
     width: 100vw;
@@ -117,8 +93,7 @@ body {
     align-items: center;
 }
 
-.settings > div >  button {
-    /* background-color: red; */
+.settingBtn {
     height: 70%;
     width: fit-content;
     padding: 10px;

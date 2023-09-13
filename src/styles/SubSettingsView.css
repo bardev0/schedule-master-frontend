@@ -1,0 +1,17 @@
+@import "./subSettings/EditUsersView.css";
+@import "./subSettings/scheaduleView.css";
+@import "./subSettings/AddPShiftView.css";
+@import "./subSettings/AddOffView.css";
+@import "./subSettings/MainSettingsView.css";
+
+.subSetting {
+    background-color: azure;
+    border-radius: 20px;
+    padding: 10px;
+
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    width: 70vw;
+    height: 50vh;
+}

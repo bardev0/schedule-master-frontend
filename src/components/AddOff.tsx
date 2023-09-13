@@ -1,6 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { TAddOffProps } from "../utils/types";
 import mainArrayChanges from "../contexts/MainArrayChangeContext";
+import routes from "../../../grefik-backend/src/routes";
+import { mainRoute } from "../App";
+import mainUserContext from "../contexts/MainUserContext";
+
 export function AddOff(props: TAddOffProps) {
     // props.data[0] -> object
     // props.data[1] -> dispacher
@@ -14,11 +18,22 @@ export function AddOff(props: TAddOffProps) {
     const [userList, setUserList] = useState<any[]>();
     const [changeA, setChangeA] = useContext(mainArrayChanges);
 
+    const mainUserData = useContext(mainUserContext);
+
     useEffect(() => {
-        fetch("http://localhost:2345/userList")
+        fetch(`${mainRoute}${routes.subUsersList}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ parentId: mainUserData.id }),
+        })
             .then((response) => response.json())
             .then((data) => setUserList(data));
-    });
+    }, []);
+
     const saveDate = () => {
         let tempAry = [...daysOff];
         console.log(tempAry);
@@ -65,7 +80,7 @@ export function AddOff(props: TAddOffProps) {
         };
         // send data to server
 
-        fetch("http://localhost:2345/addOffs", {
+        fetch(`${mainRoute}${routes.addOffs}`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -87,7 +102,7 @@ export function AddOff(props: TAddOffProps) {
 
     return (
         <>
-            <div className="AddOffView">
+            <div className="AddOffView subSetting">
                 <button
                     onClick={() => {
                         props.state[1](!props.state[0]);

@@ -21,60 +21,63 @@ export default function SettingsBar(props: TSettingsBarViewProps) {
         <>
             <div className="settings">
                 <div className="firstSettingsElement">
-
-                <h1>{props.userData.companyName}</h1>
-<MonthYearSelector
-                    month={{ value: props.month.value, set: props.month.set }}
-                    year={{ value: props.year.value, set: props.year.set }}
-                ></MonthYearSelector>
+                    <h1>{props.userData.companyName}</h1>
+                    <MonthYearSelector
+                        month={{
+                            value: props.month.value,
+                            set: props.month.set,
+                        }}
+                        year={{ value: props.year.value, set: props.year.set }}
+                    ></MonthYearSelector>
                 </div>
-                
+
                 <div>
-                    
-                    <button>Propose Schedule</button>
-                <button
-                    onClick={() => {
-                        setVScheaduleLIST(!vScheaduleLIST);
-                    }}
-                >
-                    LISTA GRAFIKOW
-                </button>
-                <button
-                    onClick={() => {
-                        setVAddPShift(!vAddPShift);
-                    }}
-                >
-                    Add Proposed Shift
-                </button>
-                <button
-                    onClick={() => {
-                        setVaddOff(!vAddOff);
-                    }}
-                >
-                    Add Off
-                </button>
-                <button
-                    onClick={() => {
-                        setVEditUsers(!vEditUsers);
-                    }}
-                >
-                    EDIT USERS
-                </button>
-
-
-                    </div>
+                    <button className="settingBtn">Propose Schedule</button>
+                    <button
+                        className="settingBtn"
+                        onClick={() => {
+                            setVScheaduleLIST(!vScheaduleLIST);
+                        }}
+                    >
+                        LISTA GRAFIKOW
+                    </button>
+                    <button
+                        className="settingBtn"
+                        onClick={() => {
+                            setVAddPShift(!vAddPShift);
+                        }}
+                    >
+                        Add Proposed Shift
+                    </button>
+                    <button
+                        className="settingBtn"
+                        onClick={() => {
+                            setVaddOff(!vAddOff);
+                        }}
+                    >
+                        Add Off
+                    </button>
+                    <button
+                        className="settingBtn"
+                        onClick={() => {
+                            setVEditUsers(!vEditUsers);
+                        }}
+                    >
+                        EDIT USERS
+                    </button>
+                </div>
 
                 <div className="lastSettingsElement">
-                <button
-                    onClick={() => {
-                        setVMainSettings(!vMainSettings);
-                    }}
-                >
-                    MAIN SETTINGS
-                </button>
-                <LogOutBtn></LogOutBtn>
-                    
-                    </div>   
+                    <button
+                        className="settingBtn"
+                        onClick={() => {
+                            setVMainSettings(!vMainSettings);
+                        }}
+                    >
+                        MAIN SETTINGS
+                    </button>
+                    <LogOutBtn></LogOutBtn>
+                </div>
 
                 {vAddPShift ? (
                     <></>

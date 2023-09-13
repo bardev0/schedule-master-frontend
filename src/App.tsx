@@ -6,13 +6,14 @@ import mainArrayChanges from "./contexts/MainArrayChangeContext";
 import { UserNotLoggedIn } from "./components/UserNotLoggedIn";
 import UserLoggedContext from "./contexts/UserLoggedContext";
 import mainUserContext from "./contexts/MainUserContext";
+import routes from "../../grefik-backend/src/routes";
 
-export const mainRoute = "http://localhost:2345/";
+export const mainRoute = "http://localhost:2345";
 
 function AppWrapper() {
     const [mainUserData, setMainUserData] = useState<any>();
     const fetchUser = () => {
-        fetch("http://localhost:2345/findMainuser", {
+        fetch(`${mainRoute}${routes.findMainUser}`, {
             method: "POST",
             mode: "cors",
             headers: {

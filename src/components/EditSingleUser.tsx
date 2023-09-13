@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EditSingleComp } from "./EditSingleComp";
 // item means key and value in array
-
+import mainUserContext from "../contexts/MainUserContext";
+import { mainRoute } from "../App";
+import routes from "../../../grefik-backend/src/routes";
 // when clicking last use user it doesnt work
 export function EditSingleUser(props: any) {
+    const mainUserData = useContext(mainUserContext);
     if (props.user !== undefined) {
         let [user, setUser] = useState({});
         let [name, setName] = useState(null);
@@ -29,12 +32,15 @@ export function EditSingleUser(props: any) {
                 role: role,
                 email: email,
                 hourly: hourly,
+                parent: mainUserData.id,
             };
             console.log(newUser);
-            fetch("http://localhost:2345/modifyUser", {
+            fetch(`${mainRoute}${routes.modifySubUser}`, {
                 method: "POST",
                 mode: "cors",
-                body: JSON.stringify(newUser),
+                body: JSON.stringify({
+                    newSubUserData: newUser,
+                }),
                 headers: { "Content-type": "application/json" },
             })
                 .then((response) => response.json())

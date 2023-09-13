@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Roles } from "../utils/types";
+import { mainRoute } from "../App";
+import routes from "../../../grefik-backend/src/routes";
 
+import { useContext } from "react";
+import mainUserContext from "../contexts/MainUserContext";
 //add data validation
 export function AddUser(props: any) {
     let [name, setName] = useState("");
@@ -10,6 +14,8 @@ export function AddUser(props: any) {
     let [hourly, setHourly] = useState(0);
     let roles: Roles[] = ["Consumer", "Admin"];
 
+    const mainUserData = useContext(mainUserContext);
+
     const addUserToDb = () => {
         let freshNewUser = {
             name: name,
@@ -17,9 +23,10 @@ export function AddUser(props: any) {
             role: role,
             email: email,
             hourly: hourly,
+            parent: mainUserData.id,
         };
 
-        fetch("http://localhost:2345/addUser", {
+        fetch(`${mainRoute}${routes.addSubUser}`, {
             method: "POST",
             mode: "cors",
             body: JSON.stringify(freshNewUser),

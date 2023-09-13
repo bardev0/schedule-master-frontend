@@ -57,7 +57,7 @@ export function AddPShift(props: any) {
 
     return (
         <>
-            <div className="AddPShiftView">
+            <div className="AddPShiftView subSetting">
                 <button
                     onClick={() => {
                         props.state[1](!props.state[0]);

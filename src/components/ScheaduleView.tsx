@@ -65,9 +65,12 @@ export function ScheaduleView(props: any) {
     console.log(lista);
     return (
         <>
-            <div className="scheaduleView">
-                <h1>CURENT LIST OF SHEADULES</h1>
+            <div className="scheaduleView subSetting">
+                <div className="subSettingHeader">
+                    <h1>CURENT LIST OF SHEADULES</h1>
+                </div>
                 <button
+                    className="subSettingBtn"
                     onClick={() => {
                         grabListeGrafikow();
                         console.log(lista.default[0]);

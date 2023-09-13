@@ -6,7 +6,7 @@ export function NotesElement(props: any) {
     const [notesValue, setNotesValue] = useState(props.parentId[4]);
     const [isEditNoteVisible, setEditNoteVisible] = useState(false);
     const [changeA, setChangeA] = useContext(mainArrayChanges);
-    const mainUserData = useContext(mainUserContext)
+    const mainUserData = useContext(mainUserContext);
     const changeEditView = () => {
         sendNotesValue();
         setEditNoteVisible(!isEditNoteVisible);
