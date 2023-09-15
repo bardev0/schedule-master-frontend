@@ -4,6 +4,9 @@ import { TLoginCredentials } from "../../../grefik-backend/src/types";
 import { useNavigate } from "react-router-dom";
 import { MainHeader } from "./MainHeader";
 import { Title } from "./Title";
+import * as z from "zod"
+
+const emailSchema = z.string().email()
 
 export function PageLogin() {
     const navigate = useNavigate();
@@ -21,6 +24,11 @@ export function PageLogin() {
         }
     };
     const validateLogin = async () => {
+        setErrorMsg("")
+        let validEmail = emailSchema.safeParse(username)
+
+        console.log(validEmail)
+        if (validEmail.success) {
         let user: TLoginCredentials = {
             email: username,
             password: password,
@@ -34,7 +42,11 @@ export function PageLogin() {
         })
             .then((response) => response.json())
             .then((d) => login(d));
-    };
+    } else {
+        setErrorMsg("Enter valid email")
+    }
+
+        }
     return (
         <>
             <MainHeader></MainHeader>
@@ -66,7 +78,7 @@ export function PageLogin() {
                                 onChange={(e) => {
                                     setPassword(e.target.value);
                                 }}
-                                type="text"
+                                type="password"
                             ></input>
                         </td>
                     </tr>
