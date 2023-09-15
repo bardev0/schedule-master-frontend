@@ -67,7 +67,10 @@ export function ScheaduleView(props: any) {
         <>
             <div className="scheaduleView subSetting">
                 <div className="subSettingHeader">
-                    <h1>CURENT LIST OF SHEADULES</h1>
+                    <h2>CURENT LIST OF SHEADULES</h2>
+                    <button onClick={() => props.state[1](!props.state[0])}>
+                        Close
+                    </button>
                 </div>
                 <button
                     className="subSettingBtn"

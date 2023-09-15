@@ -4,9 +4,9 @@ import { TLoginCredentials } from "../../../grefik-backend/src/types";
 import { useNavigate } from "react-router-dom";
 import { MainHeader } from "./MainHeader";
 import { Title } from "./Title";
-import * as z from "zod"
+import * as z from "zod";
 
-const emailSchema = z.string().email()
+const emailSchema = z.string().email();
 
 export function PageLogin() {
     const navigate = useNavigate();
@@ -24,29 +24,28 @@ export function PageLogin() {
         }
     };
     const validateLogin = async () => {
-        setErrorMsg("")
-        let validEmail = emailSchema.safeParse(username)
+        setErrorMsg("");
+        let validEmail = emailSchema.safeParse(username);
 
-        console.log(validEmail)
+        console.log(validEmail);
         if (validEmail.success) {
-        let user: TLoginCredentials = {
-            email: username,
-            password: password,
-        };
+            let user: TLoginCredentials = {
+                email: username,
+                password: password,
+            };
 
-        fetch("http://localhost:2345/validateMainUser", {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify(user),
-            headers: { "Content-type": "application/json" },
-        })
-            .then((response) => response.json())
-            .then((d) => login(d));
-    } else {
-        setErrorMsg("Enter valid email")
-    }
-
+            fetch("http://localhost:2345/validateMainUser", {
+                method: "POST",
+                mode: "cors",
+                body: JSON.stringify(user),
+                headers: { "Content-type": "application/json" },
+            })
+                .then((response) => response.json())
+                .then((d) => login(d));
+        } else {
+            setErrorMsg("Enter valid email");
         }
+    };
     return (
         <>
             <MainHeader></MainHeader>

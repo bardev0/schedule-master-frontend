@@ -15,3 +15,9 @@
     width: 70vw;
     height: 50vh;
 }
+
+.subSettingHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}

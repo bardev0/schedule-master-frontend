@@ -16,7 +16,6 @@ export default function SettingsBar(props: TSettingsBarViewProps) {
     let [vAddPShift, setVAddPShift] = useState(true);
     let [vScheaduleLIST, setVScheaduleLIST] = useState(true);
 
-    /// move this CSS shit to tenary operors
     return (
         <>
             <div className="settings">

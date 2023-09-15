@@ -103,6 +103,9 @@ export function AddOff(props: TAddOffProps) {
     return (
         <>
             <div className="AddOffView subSetting">
+
+                <div className="subSettingHeader">
+                    <h2>Add Off for user</h2>
                 <button
                     onClick={() => {
                         props.state[1](!props.state[0]);
@@ -110,6 +113,10 @@ export function AddOff(props: TAddOffProps) {
                 >
                     Close
                 </button>
+
+
+
+                </div>
                 <p>Select User</p>
                 <select
                     onChange={(e) => {
@@ -159,22 +166,24 @@ export function AddOff(props: TAddOffProps) {
                 )}
 
                 <div>
-                    {
-                        //add removal of dates
-                    }
-                    <h2>Off</h2>
-                    {daysOff.map((item, idx) => (
-                        <p key={idx}>
-                            {item.toDateString()}{" "}
-                            <button
+                    Selected days :
+                    <table className="offSelectedDates"> 
+
+{daysOff.map((item, idx) => (
+                        <tr key={idx}>
+                            <td >{item.toDateString()}{" "}</td>
+                            <td><button
                                 onClick={() => {
                                     removeDate(idx);
                                 }}
                             >
-                                DD
+                                -
                             </button>
-                        </p>
+                            </td>
+                        </tr>
                     ))}
+                    </table>
+                    
                 </div>
                 <button
                     onClick={() => {

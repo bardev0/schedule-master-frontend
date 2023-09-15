@@ -70,13 +70,17 @@ export function AddPShift(props: any) {
     return (
         <>
             <div className="AddPShiftView subSetting">
-                <button
-                    onClick={() => {
-                        props.state[1](!props.state[0]);
-                    }}
-                >
-                    Close
-                </button>
+                <div className="subSettingHeader">
+                    <h2>Add Propsed Shift</h2>
+                    <button
+                        onClick={() => {
+                            props.state[1](!props.state[0]);
+                        }}
+                    >
+                        Close
+                    </button>
+                </div>
+
                 <select
                     onChange={(e) => {
                         setCurrentUser(e.target.value);

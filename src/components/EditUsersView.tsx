@@ -68,47 +68,64 @@ export function EditUsersView(props: TEditUsersView) {
     return (
         <>
             <div className="editUsersView subSetting">
-                <h1>Manage Users</h1>
-                <button onClick={() => props.state[1](!props.state[0])}>
-                    Close
-                </button>
+                <div className="subSettingHeader">
+                    <h2>Manage Users</h2>
+                    <button onClick={() => props.state[1](!props.state[0])}>
+                        Close
+                    </button>
+                </div>
+
                 <br></br>
                 <button onClick={() => setDAD(!displayAddUser)}>
                     Add User
                 </button>
-                <p>Name / Surname / Role / Hourly / Edit</p>
                 {
                     // add separate element to user for CSS trickery
                 }
-                {userList.map((user: TUserConsumer) => (
-                    <div className="userList">
-                        <div>{user.id}</div>
-                        <div>{user.name}</div>
-                        <div>{user.surname}</div>
-                        <div>{user.nick}</div>
-                        <div>{user.role}</div>
-                        <div>{user.email}</div>
-                        <div>{user.hourly} </div>
-                        {/* w/ button set current id to user (e.ta) */}
-                        <button
-                            onClick={() => {
-                                setCurrentEditUserId(user.id);
-                                setUserChange(!userChange);
-                                // add that edit closes as well maybe?
-                            }}
-                        >
-                            edit
-                        </button>
-                        <button
-                            onClick={() => {
-                                prepUserToRemove(user.id);
-                                removeUser();
-                            }}
-                        >
-                            delete
-                        </button>
-                    </div>
-                ))}
+                <table>
+                    <th>
+                        <td>Name</td>
+                        <td>Surname</td>
+                        <td>Nick</td>
+                        <td>Role</td>
+                        <td>Email</td>
+                        <td>Hourly</td>
+                    </th>
+                    <tbody>
+                        {userList.map((user: TUserConsumer) => (
+                            <tr className="userList">
+                                <td>{user.name}</td>
+                                <td>{user.surname}</td>
+                                <td>{user.nick}</td>
+                                <td>{user.role}</td>
+                                <td>{user.email}</td>
+                                <td>{user.hourly} </td>
+                                {/* w/ button set current id to user (e.ta) */}
+                                <td>
+                                    <button
+                                        onClick={() => {
+                                            setCurrentEditUserId(user.id);
+                                            setUserChange(!userChange);
+                                            // add that edit closes as well maybe?
+                                        }}
+                                    >
+                                        edit
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() => {
+                                            prepUserToRemove(user.id);
+                                            removeUser();
+                                        }}
+                                    >
+                                        delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                 {displayEdit ? (
                     <p> </p>
                 ) : user == undefined ? (
