@@ -4,6 +4,7 @@ import { TLoginCredentials } from "../../../grefik-backend/src/types";
 import { useNavigate } from "react-router-dom";
 import { MainHeader } from "./MainHeader";
 import { Title } from "./Title";
+
 export function PageLogin() {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ export function PageLogin() {
             setErrorMsg(response.status);
         }
     };
-    const validateLogin = () => {
+    const validateLogin = async () => {
         let user: TLoginCredentials = {
             email: username,
             password: password,

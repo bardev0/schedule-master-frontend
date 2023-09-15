@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { TRegisterData } from "../../../grefik-backend/src/types";
 import { MainHeader } from "./MainHeader";
 import { Title } from "./Title";
+import  * as bcryptjs from "bcryptjs";
+
 export function PageRegister() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -19,13 +21,18 @@ export function PageRegister() {
         }
     };
 
-    const register = () => {
+    const register = async () => {
         let registerData: TRegisterData = {
             email: email,
-            password: password,
+            password: "",
             promoCode: promoCode,
             companyName: company,
         };
+
+        let saltR = 13;
+        let salt = await bcryptjs.genSalt(saltR);
+        let hash = await bcryptjs.hash(password, salt);
+        registerData.password = hash
 
         fetch("http://localhost:2345/addMainUser", {
             method: "POST",
