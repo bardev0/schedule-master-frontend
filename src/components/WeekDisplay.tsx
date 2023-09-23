@@ -8,6 +8,7 @@ export function WeekDisplay(props: any) {
                 {props.week.map((w: TDay) => {
                     if (w == undefined) {
                         return <span></span>;
+                    
                     } else {
                         // split this into components
                         return <DayDisplay w={w}></DayDisplay>;

@@ -47,6 +47,7 @@ body {
 
 .weekRow {
     /* background-color: var(--weekRowColor); */
+    /* background-color: red; */
     margin-top: 2px;
     display: grid;
     grid-template-columns: repeat(7, calc(100vw / 7));
