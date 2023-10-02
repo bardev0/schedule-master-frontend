@@ -16,7 +16,7 @@ export function PageRegister() {
 
     const validateRegister = (d: any) => {
         if (d.registerStatus == "succes") {
-            navigate("/registerComplete");
+            navigate("/shiftArtist/registerComplete");
         } else {
             setErrorMsg(d.registerStatus);
         }

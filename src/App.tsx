@@ -59,6 +59,7 @@ function App(props: any) {
 
     const userNicks = useContext(UserNickContext);
 
+    console.log(props);
     const fetchNicksObj = () => {
         fetch(`${mainRoute}${routes.subUsersList}`, {
             method: "POST",
@@ -132,13 +133,13 @@ function App(props: any) {
                     <mainArrayChanges.Provider value={[isAC, setIAC]}>
                         <UserLoggedContext.Provider value={setUserLoggedIn}>
                             <UserNickContext.Provider value={nicksList}>
-                                <button
+                                {/* <button
                                     onClick={() => {
                                         console.log(nicksList);
                                     }}
                                 >
                                     DEBUG
-                                </button>
+                                </button> */}
                                 <SettingsBar
                                     month={{
                                         value: currentMonth,
@@ -161,6 +162,9 @@ function App(props: any) {
                                         arrayData={allYearsArray}
                                     ></SingleMonthView>
                                 )}
+                                <div className="subscriptionStatus">
+                                    {props.userData.subsciptionDate}
+                                </div>
                             </UserNickContext.Provider>
                         </UserLoggedContext.Provider>
                     </mainArrayChanges.Provider>

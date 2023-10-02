@@ -18,7 +18,7 @@ export function PageLogin() {
         console.log(response);
         if (response.status == "succes") {
             localStorage.setItem("id", response.id);
-            navigate("/app");
+            navigate("/shiftArtist/app");
         } else {
             setErrorMsg(response.status);
         }

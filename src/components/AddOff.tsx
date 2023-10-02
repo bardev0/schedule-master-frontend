@@ -103,19 +103,15 @@ export function AddOff(props: TAddOffProps) {
     return (
         <>
             <div className="AddOffView subSetting">
-
                 <div className="subSettingHeader">
                     <h2>Add Off for user</h2>
-                <button
-                    onClick={() => {
-                        props.state[1](!props.state[0]);
-                    }}
-                >
-                    Close
-                </button>
-
-
-
+                    <button
+                        onClick={() => {
+                            props.state[1](!props.state[0]);
+                        }}
+                    >
+                        Close
+                    </button>
                 </div>
                 <p>Select User</p>
                 <select
@@ -167,23 +163,22 @@ export function AddOff(props: TAddOffProps) {
 
                 <div>
                     Selected days :
-                    <table className="offSelectedDates"> 
-
-{daysOff.map((item, idx) => (
-                        <tr key={idx}>
-                            <td >{item.toDateString()}{" "}</td>
-                            <td><button
-                                onClick={() => {
-                                    removeDate(idx);
-                                }}
-                            >
-                                -
-                            </button>
-                            </td>
-                        </tr>
-                    ))}
+                    <table className="offSelectedDates">
+                        {daysOff.map((item, idx) => (
+                            <tr key={idx}>
+                                <td>{item.toDateString()} </td>
+                                <td>
+                                    <button
+                                        onClick={() => {
+                                            removeDate(idx);
+                                        }}
+                                    >
+                                        -
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </table>
-                    
                 </div>
                 <button
                     onClick={() => {

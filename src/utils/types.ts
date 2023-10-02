@@ -43,3 +43,9 @@ export type TNotesObj = {
     dayNum: number;
     date: any;
 };
+
+
+export type GrafkBody = {
+    user: string | null,
+    id: string | null
+}

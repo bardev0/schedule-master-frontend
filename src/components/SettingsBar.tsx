@@ -7,6 +7,7 @@ import { MainSettingsView } from "./MainSettingsView";
 import { AddPShift } from "./AddPShift";
 import { ScheaduleView } from "./ScheaduleView";
 import { LogOutBtn } from "./LogOutBtn";
+import { Link } from "react-router-dom";
 
 export default function SettingsBar(props: TSettingsBarViewProps) {
     // select only one active view

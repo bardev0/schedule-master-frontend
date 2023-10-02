@@ -7,7 +7,7 @@ export function PageRegisterSuccesful() {
             <Title></Title>
             <div className="underTitleContiner">
                 <h2>RegisterSuccesfull!</h2>
-                <Link className="headerBtn" to="/login">
+                <Link className="headerBtn" to="/shiftArtist/login">
                     Log In
                 </Link>
             </div>

@@ -5,6 +5,7 @@ import { NewGrafik } from "./NewGrafikComp";
 import routes from "../../../grefik-backend/src/routes";
 import { mainRoute } from "../App";
 import mainUserContext from "../contexts/MainUserContext";
+import { Link } from "react-router-dom";
 
 export function ScheaduleView(props: any) {
     const [lista, setLista] = useState<any>();
@@ -63,6 +64,11 @@ export function ScheaduleView(props: any) {
     }, []);
 
     console.log(lista);
+
+    const prevStats = (id: any) => {
+        localStorage.setItem("mainUserId", mainUserData.id);
+        localStorage.setItem("scheduleId", id);
+    };
     return (
         <>
             <div className="scheaduleView subSetting">
@@ -90,7 +96,15 @@ export function ScheaduleView(props: any) {
                     lista.default.map((item: TGrafik) => (
                         <div>
                             {item.id} {item.status}{" "}
-                            <button>Preview Stats</button>
+                            <Link to="stats" target="_blank">
+                                <button
+                                    onClick={() => {
+                                        prevStats(item.id);
+                                    }}
+                                >
+                                    Stats
+                                </button>
+                            </Link>
                             {item.status == "active" ? (
                                 <button onClick={() => changeStatus(item.id)}>
                                     Close

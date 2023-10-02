@@ -6,27 +6,33 @@ import { PageLanding } from "./components/PageLanding.tsx";
 import { PageLogin } from "./components/PageLogin.tsx";
 import { PageRegister } from "./components/PageRegister.tsx";
 import { PageRegisterSuccesful } from "./components/PageRegisterSuccesful.tsx";
+import { ScheduleStats } from "./components/ScheduleStats.tsx";
+const domain = "/shiftArtist";
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: domain,
         element: <PageLanding></PageLanding>,
     },
     {
-        path: "/app",
+        path: `${domain}/app`,
         element: <AppWrapper></AppWrapper>,
     },
     {
-        path: "/login",
+        path: `${domain}/login`,
         element: <PageLogin></PageLogin>,
     },
     {
-        path: "/register",
+        path: `${domain}/register`,
         element: <PageRegister></PageRegister>,
     },
     {
-        path: "/registerComplete",
+        path: `${domain}/registerComplete`,
         element: <PageRegisterSuccesful></PageRegisterSuccesful>,
+    },
+    {
+        path: `${domain}/app/stats`,
+        element: <ScheduleStats></ScheduleStats>,
     },
 ]);
 
